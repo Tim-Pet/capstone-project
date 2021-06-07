@@ -1,13 +1,10 @@
-import { useState, useEffect } from 'react'
-import Login from './components/Login'
-import { getTokenFromUrl } from './helper/spotify'
+import { useEffect, useState } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
-import Select from './components/Select/Select'
-import { UserData } from './components/Select/Select'
+import Login from './components/Login'
+import Select, { UserData } from './components/Select/Select'
+import { getTokenFromUrl } from './helper/spotify'
 
 function App() {
-  const spotify = new SpotifyWebApi()
-
   const fallbackUserData: UserData = {
     country: 'DE',
     display_name: 'John Doe',
@@ -17,6 +14,8 @@ function App() {
   const [token, setToken] = useState<string | null>(null)
   const [userData, setUserData] = useState<UserData>(fallbackUserData)
 
+  const spotify = new SpotifyWebApi()
+
   useEffect(() => {
     setToken(getTokenFromUrl())
   }, [])
@@ -24,9 +23,7 @@ function App() {
   useEffect(() => {
     if (token) {
       window.location.hash = ''
-
       spotify.setAccessToken(token)
-
       fetchUserData()
     }
   }, [token])

@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
-import Button from './common/Button/Button'
 import heroImg from '../assets/images/Login-hero.jpg'
+import Button from './common/Button/Button'
 
 const Login = () => {
   const authEndpoint: string = 'https://accounts.spotify.com/authorize'
@@ -35,36 +35,36 @@ export default Login
 const LoginContainer = styled.div`
   height: 100vh;
   max-height: 100vh;
-  overflow: hidden;
   overflow-y: hidden;
+  overflow: hidden;
 `
 const StyledImg = styled.img`
   height: 40%;
-  width: 100%;
   object-fit: cover;
   object-position: 100% top;
+  width: 100%;
 `
 
 const ContentContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  height: 65%;
-  width: 100%;
+  align-items: center;
   background: var(--color-background);
   border-radius: 40px 40px 0 0;
+  bottom: 0;
   box-shadow: 0 3px 16px #50525450;
-  padding: 10px 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 65%;
+  padding: 10px 40px;
+  position: absolute;
+  width: 100%;
 `
 const Title = styled.h1`
   margin-top: 30px;
 `
 
 const Description = styled.p`
-  text-align: center;
   margin-bottom: 40px;
+  text-align: center;
 `
 
 const LoginButton = styled(Button)`
@@ -72,7 +72,7 @@ const LoginButton = styled(Button)`
   text-align: center;
 `
 const RegisterLink = styled.a`
+  font-size: 16px;
   margin-top: 25px;
   text-align: center;
-  font-size: 16px;
 `

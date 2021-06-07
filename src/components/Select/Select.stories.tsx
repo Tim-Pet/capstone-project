@@ -1,5 +1,5 @@
-import Select from './Select'
 import { Story } from '@storybook/react'
+import Select from './Select'
 
 export default {
   title: 'Select',

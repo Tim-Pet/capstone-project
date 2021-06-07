@@ -26,7 +26,7 @@ const Select = ({ userData }: Props) => {
 export default Select
 
 const Container = styled.dl`
-  padding: 10px 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding: 10px 20px;
 `

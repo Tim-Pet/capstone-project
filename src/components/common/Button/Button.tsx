@@ -19,10 +19,10 @@ const Button = ({ children, component = 'button', ...props }: ButtonProps) => {
 export default Button
 
 const BtnWrapper = styled.button`
-  border: none;
   background-color: #007bf5;
-  font-weight: 400;
-  color: white;
-  padding: 10px 30%;
   border-radius: 60px;
+  border: none;
+  color: white;
+  font-weight: 400;
+  padding: 10px 30%;
 `

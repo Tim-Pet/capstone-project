@@ -1,14 +1,14 @@
-import { createGlobalStyle } from 'styled-components'
 import '@fontsource/montserrat'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 :root {
-  --color-accent: #007BF5;
   --color-accent-light: #007bf580;
-  --color-background: linear-gradient(to right top, #ffffff, #fbfbfb, #f7f7f7, #f3f3f3, #efefef);
+  --color-accent: #007BF5;
   --color-background-alt: #FFFFFF70;
-  --color-text: #505254;
+  --color-background: linear-gradient(to right top, #ffffff, #fbfbfb, #f7f7f7, #f3f3f3, #efefef);
   --color-text-light: #50525470;
+  --color-text: #505254;
 }
 
 * {
@@ -24,9 +24,9 @@ body {
 }
 p, a {
   font-size: 20px;
+  font-weight: 300;
   letter-spacing: 0.5px;
   line-height: 26px;
-  font-weight: 300;
 }
 
 h1 {
@@ -44,8 +44,8 @@ h2 {
 
 a {
   color: var(--color-accent-light);
-  text-decoration: none;
   letter-spacing: 1px;
+  text-decoration: none;
 }
 
 input,
