@@ -1,5 +1,5 @@
 import '@fontsource/montserrat'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components/macro'
 
 const GlobalStyle = createGlobalStyle`
 :root {
