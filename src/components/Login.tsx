@@ -5,6 +5,11 @@ import heroImg from '../assets/images/Login-hero.jpg'
 interface LoginProps {}
 
 const Login = (props: LoginProps) => {
+  const authEndpoint: string = 'https://accounts.spotify.com/authorize'
+  const redirectUri: string = 'http://localhost:3000/'
+  const clientId: string = 'ce11cc084edb46788a28b35de4f32f65'
+  const scope: string = 'user-read-private'
+
   return (
     <LoginContainer>
       <StyledImg src={heroImg} />
@@ -13,10 +18,15 @@ const Login = (props: LoginProps) => {
         <Description>
           Login with Spotify to get access to your personal reommendations
         </Description>
-        <LoginButton component={`a`} primary={true} link={'#'}>
+        <LoginButton
+          component={'a'}
+          href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=token&show_dialog=true`}
+        >
           Login
         </LoginButton>
-        <RegisterLink href="#">Don't have a Spotify account?</RegisterLink>
+        <RegisterLink href="https://www.spotify.com/de/signup/">
+          Don't have a Spotify account?
+        </RegisterLink>
       </ContentContainer>
     </LoginContainer>
   )
@@ -41,6 +51,7 @@ const ContentContainer = styled.div`
   position: absolute;
   bottom: 0;
   height: 65%;
+  width: 100%;
   background: var(--color-background);
   border-radius: 40px 40px 0 0;
   box-shadow: 0 3px 16px #50525450;
