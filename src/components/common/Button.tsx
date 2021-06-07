@@ -3,12 +3,13 @@ import styled from 'styled-components/macro'
 
 interface ButtonProps {
   children: string
-  primary: Boolean
-  link: string
-  component: any
+
+  component?: string | undefined
+  href?: string
+  as?: React.ElementType
 }
 
-const Button = ({ children, component, primary, ...props }: ButtonProps) => {
+const Button = ({ children, component = 'button', ...props }: ButtonProps) => {
   return (
     <BtnWrapper as={component} {...props}>
       {children}
