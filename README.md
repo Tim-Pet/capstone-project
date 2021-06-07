@@ -1,6 +1,6 @@
-# Capstone project: SpoRe
+# Capstone project: Recofy
 
-👋🏽 &nbsp;Welcome to Spo(tify)Re(commendations).
+👋🏽 &nbsp;Welcome to Spotify Recommendations alias Recofy.
 
 ## Available Scripts
 
