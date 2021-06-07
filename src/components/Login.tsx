@@ -22,7 +22,11 @@ const Login = () => {
         >
           Login
         </LoginButton>
-        <RegisterLink href="https://www.spotify.com/de/signup/">
+        <RegisterLink
+          href="https://www.spotify.com/de/signup/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Don't have a Spotify account?
         </RegisterLink>
       </ContentContainer>

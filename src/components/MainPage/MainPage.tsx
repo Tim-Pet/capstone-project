@@ -10,7 +10,7 @@ export interface UserData {
   product: string
 }
 
-const Select = ({ userData }: Props) => {
+const MainPage = ({ userData }: Props) => {
   return (
     <Container>
       <dt>Country:</dt>
@@ -23,7 +23,7 @@ const Select = ({ userData }: Props) => {
   )
 }
 
-export default Select
+export default MainPage
 
 const Container = styled.dl`
   display: grid;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login'
-import Select, { UserData } from './components/Select/Select'
+import MainPage, { UserData } from './components/MainPage/MainPage'
 import { getTokenFromUrl } from './helper/spotify'
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
     }
   }, [token])
 
-  return <div>{token ? <Select userData={userData} /> : <Login></Login>}</div>
+  return <div>{token ? <MainPage userData={userData} /> : <Login></Login>}</div>
 
   function fetchUserData() {
     spotify.getMe().then(user => {

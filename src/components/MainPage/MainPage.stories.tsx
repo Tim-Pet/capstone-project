@@ -1,11 +1,11 @@
 import { Story } from '@storybook/react'
-import Select from './Select'
+import MainPage from './MainPage'
 
 export default {
-  title: 'Select',
-  component: Select,
+  title: 'MainPage',
+  component: MainPage,
 }
-interface SelectProps {
+interface MainPageProps {
   userData: UserData
 }
 
@@ -15,10 +15,10 @@ interface UserData {
   product: string
 }
 
-const Template: Story<SelectProps> = args => <Select {...args} />
+const Template: Story<MainPageProps> = args => <MainPage {...args} />
 
-export const DefaultSelect = Template.bind({})
-DefaultSelect.args = {
+export const DefaultMainPage = Template.bind({})
+DefaultMainPage.args = {
   userData: {
     country: 'DE',
     display_name: 'John Doe',
