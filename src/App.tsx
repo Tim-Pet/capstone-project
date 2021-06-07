@@ -1,5 +1,11 @@
+import Login from './components/Login'
+
 function App() {
-  return <div>Hello World</div>
+  return (
+    <div>
+      <Login></Login>
+    </div>
+  )
 }
 
 export default App

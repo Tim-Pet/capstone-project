@@ -33,12 +33,15 @@ p, a {
   font-size: 20px;
   letter-spacing: 1px;
   line-height: 26px;
+  font-weight: 300;
 }
 
 h1 {
   font-size: 48px;
+  font-weight: 600;
   letter-spacing: 5px;
   line-height: 64px;
+  margin: 20px 0 0 10px;
 }
 
 h2 {
