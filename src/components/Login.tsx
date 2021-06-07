@@ -1,10 +1,8 @@
 import styled from 'styled-components/macro'
-import Button from './common/Button'
+import Button from './common/Button/Button'
 import heroImg from '../assets/images/Login-hero.jpg'
 
-interface LoginProps {}
-
-const Login = (props: LoginProps) => {
+const Login = () => {
   const authEndpoint: string = 'https://accounts.spotify.com/authorize'
   const redirectUri: string = 'http://localhost:3000/'
   const clientId: string = 'ce11cc084edb46788a28b35de4f32f65'

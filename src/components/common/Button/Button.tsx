@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 
 interface ButtonProps {
   children: string
-
   component?: string | undefined
   href?: string
   as?: React.ElementType

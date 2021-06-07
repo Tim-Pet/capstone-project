@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import Login from './components/Login'
 import { getTokenFromUrl } from './helper/spotify'
 import SpotifyWebApi from 'spotify-web-api-js'
-import Select from './components/Select'
-import { UserData } from './components/Select'
+import Select from './components/Select/Select'
+import { UserData } from './components/Select/Select'
 
 function App() {
   const spotify = new SpotifyWebApi()
