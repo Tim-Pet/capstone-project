@@ -1,26 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login'
 import MainPage, { UserData } from './components/MainPage/MainPage'
 import { getTokenFromUrl } from './helper/spotify'
 
-function App() {
-  const fallbackUserData: UserData = {
-    country: 'DE',
-    display_name: 'John Doe',
-    product: 'premium',
-  }
+function App(): JSX.Element {
+  const [userData, setUserData] = useState<UserData | null>(null)
 
-  const [token, setToken] = useState<string | null>(null)
-  const [userData, setUserData] = useState<UserData>(fallbackUserData)
+  const token = useMemo(getTokenFromUrl, [])
 
   const spotify = new SpotifyWebApi()
 
-  useEffect(() => {
-    setToken(getTokenFromUrl())
-  }, [])
-
-  useEffect(() => {
+  useEffect((): void => {
     if (token) {
       window.location.hash = ''
       spotify.setAccessToken(token)
@@ -28,9 +19,9 @@ function App() {
     }
   }, [token])
 
-  return <div>{token ? <MainPage userData={userData} /> : <Login></Login>}</div>
+  return <div>{token ? <MainPage userData={userData} /> : <Login />}</div>
 
-  function fetchUserData() {
+  function fetchUserData(): void {
     spotify.getMe().then(user => {
       const data: UserData = {
         country: user.country,

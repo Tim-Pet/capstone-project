@@ -1,10 +1,10 @@
-import { Story } from '@storybook/react'
+import { Story, Meta } from '@storybook/react'
 import Button from './Button'
 
 export default {
   title: 'Button',
   component: Button,
-}
+} as Meta
 
 interface ButtonProps {
   children: string
@@ -15,7 +15,7 @@ interface ButtonProps {
 
 const Template: Story<ButtonProps> = args => <Button {...args} />
 
-export const DefaultButton = Template.bind({})
+export const DefaultButton: Story<ButtonProps> = Template.bind({})
 DefaultButton.args = {
   children: 'Start',
 }

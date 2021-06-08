@@ -1,10 +1,10 @@
-import { Story } from '@storybook/react'
+import { Story, Meta } from '@storybook/react'
 import MainPage from './MainPage'
 
 export default {
   title: 'MainPage',
   component: MainPage,
-}
+} as Meta
 interface MainPageProps {
   userData: UserData
 }

@@ -1,3 +1,2 @@
-export const getTokenFromUrl = () => {
-  return window.location.hash.split('=')[1]?.split('&')[0]
-}
+export const getTokenFromUrl = (): string | undefined =>
+  window.location.hash.split('=')[1]?.split('&')[0]

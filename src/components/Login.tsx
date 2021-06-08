@@ -2,10 +2,10 @@ import styled from 'styled-components/macro'
 import heroImg from '../assets/images/Login-hero.jpg'
 import Button from './common/Button/Button'
 
-const Login = () => {
+const Login = (): JSX.Element => {
   const authEndpoint: string = 'https://accounts.spotify.com/authorize'
   const redirectUri: string = 'http://localhost:3000/'
-  const clientId: string = 'ce11cc084edb46788a28b35de4f32f65'
+  const clientId: string = process.env.REACT_APP_CLIENT_ID as string
   const scope: string = 'user-read-private'
 
   return (

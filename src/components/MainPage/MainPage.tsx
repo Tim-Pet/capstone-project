@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 
 interface Props {
-  userData: UserData
+  userData: UserData | null
 }
 
 export interface UserData {
@@ -14,11 +14,11 @@ const MainPage = ({ userData }: Props) => {
   return (
     <Container>
       <dt>Country:</dt>
-      <dd>{userData.country}</dd>
+      <dd>{userData?.country}</dd>
       <dt>Name:</dt>
-      <dd>{userData.display_name}</dd>
+      <dd>{userData?.display_name}</dd>
       <dt>Product:</dt>
-      <dd>{userData.product}</dd>
+      <dd>{userData?.product}</dd>
     </Container>
   )
 }
