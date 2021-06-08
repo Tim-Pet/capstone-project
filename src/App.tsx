@@ -13,13 +13,21 @@ function App(): JSX.Element {
 
   useEffect((): void => {
     if (token) {
-      window.location.hash = ''
+      removeHash()
       spotify.setAccessToken(token)
       fetchUserData()
     }
   }, [token])
 
   return <div>{token ? <MainPage userData={userData} /> : <Login />}</div>
+
+  function removeHash(): void {
+    window.history.pushState(
+      '',
+      document.title,
+      window.location.pathname + window.location.search
+    )
+  }
 
   function fetchUserData(): void {
     spotify.getMe().then(user => {

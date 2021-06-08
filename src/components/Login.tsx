@@ -4,7 +4,7 @@ import Button from './common/Button/Button'
 
 const Login = (): JSX.Element => {
   const authEndpoint: string = 'https://accounts.spotify.com/authorize'
-  const redirectUri: string = 'http://localhost:3000/'
+  const redirectUri: string = process.env.REACT_APP_REDIRECT_URI as string
   const clientId: string = process.env.REACT_APP_CLIENT_ID as string
   const scope: string = 'user-read-private'
 
