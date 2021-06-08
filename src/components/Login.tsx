@@ -54,16 +54,16 @@ const ContentContainer = styled.div`
   background: var(--color-background);
   border-radius: 40px 40px 0 0;
   bottom: 0;
-  box-shadow: 0 3px 16px #50525450;
+  box-shadow: 0 4px 16px #50525450;
   display: flex;
   flex-direction: column;
   height: 65%;
-  padding: 10px 40px;
+  padding: 12px 40px;
   position: absolute;
   width: 100%;
 `
 const Title = styled.h1`
-  margin-top: 30px;
+  margin-top: 32px;
 `
 
 const Description = styled.p`
@@ -77,6 +77,6 @@ const LoginButton = styled(Button)`
 `
 const RegisterLink = styled.a`
   font-size: 16px;
-  margin-top: 25px;
+  margin-top: 24px;
   text-align: center;
 `

@@ -28,5 +28,5 @@ export default MainPage
 const Container = styled.dl`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 10px 20px;
+  padding: 12px 24px;
 `

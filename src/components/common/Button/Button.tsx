@@ -24,5 +24,5 @@ const BtnWrapper = styled.button`
   border: none;
   color: white;
   font-weight: 400;
-  padding: 10px 30%;
+  padding: 12px 30%;
 `

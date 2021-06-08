@@ -23,23 +23,23 @@ body {
   padding: 0;
 }
 p, a {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 300;
   letter-spacing: 0.5px;
-  line-height: 26px;
+  line-height: 1.75rem;
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 2.75rem;
   font-weight: 600;
   letter-spacing: 4px;
-  line-height: 64px;
-  margin: 20px 0 0 10px;
+  line-height: 4rem;
+  margin: 16px 0 0 0;
 }
 
 h2 {
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 2.5rem;
+  line-height: 3rem;
 }
 
 a {
