@@ -1,11 +1,16 @@
 import { useEffect, useState, useMemo } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login'
-import MainPage, { UserData } from './components/MainPage/MainPage'
+import MainPage, { UserData } from './components/pages/MainPage/MainPage'
 import { getTokenFromUrl } from './helper/spotify'
 
 function App(): JSX.Element {
   const [userData, setUserData] = useState<UserData | null>(null)
+  const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
+
+  useEffect(() => {
+    tracks?.forEach(track => console.log(track.name))
+  }, [tracks])
 
   const token = useMemo(getTokenFromUrl, [])
 
@@ -17,11 +22,16 @@ function App(): JSX.Element {
       spotify.setAccessToken(token)
       fetchUserData()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
   return (
     <div>
-      {token ? <MainPage userData={userData} spotify={spotify} /> : <Login />}
+      {token ? (
+        <MainPage userData={userData} spotify={spotify} setTracks={setTracks} />
+      ) : (
+        <Login />
+      )}
     </div>
   )
 

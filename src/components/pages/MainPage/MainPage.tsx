@@ -1,11 +1,14 @@
 import styled from 'styled-components/macro'
-import Button from '../common/Button/Button'
-import Slider from '../common/Slider/Slider'
+import Button from '../../common/Button/Button'
+import Slider from '../../common/Slider/Slider'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 interface Props {
   userData: UserData | null
   spotify: SpotifyWebApi.SpotifyWebApiJs
+  setTracks: React.Dispatch<
+    React.SetStateAction<SpotifyApi.TrackObjectSimplified[] | undefined>
+  >
 }
 
 export interface UserData {
@@ -14,8 +17,7 @@ export interface UserData {
   product: string
 }
 
-const MainPage = ({ userData, spotify }: Props) => {
-  const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
+const MainPage = ({ userData, spotify, setTracks }: Props) => {
   const [
     seedObject,
     setSeedObject,
@@ -23,11 +25,6 @@ const MainPage = ({ userData, spotify }: Props) => {
     limit: 2,
     seed_genres: 'classical',
   })
-
-  useEffect(() => {
-    console.log('Given seed: ', seedObject)
-    tracks?.forEach(track => console.log(track.name))
-  }, [tracks])
 
   return (
     <Container>
