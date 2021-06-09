@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import MainPage from './MainPage'
+import SpotifyWebApi from 'spotify-web-api-js'
 
 export default {
   title: 'MainPage',
@@ -7,6 +8,7 @@ export default {
 } as Meta
 interface MainPageProps {
   userData: UserData
+  spotify: SpotifyWebApi.SpotifyWebApiJs
 }
 
 interface UserData {
@@ -24,4 +26,5 @@ DefaultMainPage.args = {
     display_name: 'John Doe',
     product: 'premium',
   },
+  spotify: new SpotifyWebApi(),
 }

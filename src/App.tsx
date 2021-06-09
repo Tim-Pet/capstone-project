@@ -9,7 +9,7 @@ function App(): JSX.Element {
 
   const token = useMemo(getTokenFromUrl, [])
 
-  const spotify = new SpotifyWebApi()
+  const spotify: SpotifyWebApi.SpotifyWebApiJs = new SpotifyWebApi()
 
   useEffect((): void => {
     if (token) {
@@ -19,7 +19,11 @@ function App(): JSX.Element {
     }
   }, [token])
 
-  return <div>{token ? <MainPage userData={userData} /> : <Login />}</div>
+  return (
+    <div>
+      {token ? <MainPage userData={userData} spotify={spotify} /> : <Login />}
+    </div>
+  )
 
   function removeHash(): void {
     window.history.pushState(
