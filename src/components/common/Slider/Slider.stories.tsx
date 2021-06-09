@@ -4,7 +4,7 @@ import Slider from './Slider'
 export default {
   title: 'Slider',
   component: Slider,
-  argTypes: { onChange: { action: 'clicked' } },
+  argTypes: { onChange: { action: 'changed' } },
 } as Meta
 
 interface SliderProps {

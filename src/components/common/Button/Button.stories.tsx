@@ -4,6 +4,7 @@ import Button from './Button'
 export default {
   title: 'Button',
   component: Button,
+  argTypes: { onClick: { action: 'clicked' } },
 } as Meta
 
 interface ButtonProps {
