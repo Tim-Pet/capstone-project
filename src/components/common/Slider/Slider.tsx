@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import Slider from '@material-ui/core/Slider'
 
-interface Props {
+interface SliderProps {
   title: string
   startValue: number
   min: number
@@ -17,7 +17,7 @@ const SliderComponent = ({
   max,
   step,
   onChange,
-}: Props) => {
+}: SliderProps) => {
   return (
     <div>
       <h3>{title}</h3>
