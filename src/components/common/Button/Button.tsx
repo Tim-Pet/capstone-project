@@ -6,6 +6,7 @@ interface ButtonProps {
   component?: string | undefined
   href?: string
   as?: React.ElementType
+  onClick?: Function
 }
 
 const Button = ({ children, component = 'button', ...props }: ButtonProps) => {
