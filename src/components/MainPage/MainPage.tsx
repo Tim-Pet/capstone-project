@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import Button from '../common/Button/Button'
 import Slider from '../common/Slider/Slider'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 interface Props {
   userData: UserData | null
   spotify: SpotifyWebApi.SpotifyWebApiJs
@@ -16,27 +16,36 @@ export interface UserData {
 
 const MainPage = ({ userData, spotify }: Props) => {
   const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
-
-  const seedObject: any = {
+  const [
+    seedObject,
+    setSeedObject,
+  ] = useState<SpotifyApi.RecommendationsOptionsObject>({
     limit: 2,
     seed_genres: 'classical',
-  }
+  })
+
+  useEffect(() => {
+    console.log('Given seed: ', seedObject)
+    tracks?.forEach(track => console.log(track.name))
+  }, [tracks])
+
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <Slider
           title={'liveness'}
-          min={10}
-          max={50}
-          startValue={15}
+          startValue={0.1}
+          min={0}
+          max={1}
+          step={0.01}
           onChange={handleLivenessChange}
         />
         <Button>Get your Playlist</Button>
-      </form>
+      </StyledForm>
     </Container>
   )
   function handleLivenessChange(value: number): void {
-    console.log(value)
+    setSeedObject({ ...seedObject, target_liveness: value })
   }
 
   function handleSubmit(event: React.FormEvent<{}>): void {
@@ -50,7 +59,6 @@ const MainPage = ({ userData, spotify }: Props) => {
         if (error !== null) {
           console.log(error)
         } else {
-          console.log(resp)
           setTracks(resp.tracks)
         }
       }
@@ -60,8 +68,15 @@ const MainPage = ({ userData, spotify }: Props) => {
 
 export default MainPage
 
-const Container = styled.dl`
+const Container = styled.div`
   padding: 12px 24px;
+  height: 100vh;
+`
+const StyledForm = styled.form`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 // interface RecommendationsOptionsObject {
 //   limit?: number

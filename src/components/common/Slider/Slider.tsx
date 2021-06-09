@@ -3,13 +3,21 @@ import Slider from '@material-ui/core/Slider'
 
 interface Props {
   title: string
+  startValue: number
   min: number
   max: number
-  startValue: number
+  step: number
   onChange: Function
 }
 
-const SliderComponent = ({ title, min, max, startValue, onChange }: Props) => {
+const SliderComponent = ({
+  title,
+  startValue,
+  min,
+  max,
+  step,
+  onChange,
+}: Props) => {
   return (
     <div>
       <h3>{title}</h3>
@@ -17,6 +25,7 @@ const SliderComponent = ({ title, min, max, startValue, onChange }: Props) => {
         defaultValue={startValue}
         min={min}
         max={max}
+        step={step}
         onChange={(event: React.ChangeEvent<{}>, value: number | number[]) =>
           onChange(value as number)
         }
