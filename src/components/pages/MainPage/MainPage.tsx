@@ -26,7 +26,7 @@ const MainPage = ({ spotify, setTracks }: Props): JSX.Element => {
 
   return (
     <Container>
-      <Header>Choose your kind</Header>
+      <Header withBack={false}>Choose your kind</Header>
       <StyledForm onSubmit={handleSubmit}>
         <Slider
           title={'liveness'}
@@ -66,13 +66,14 @@ const MainPage = ({ spotify, setTracks }: Props): JSX.Element => {
 export default MainPage
 
 const Container = styled.div`
-  padding: 12px 24px;
+  padding: 12px 0;
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
 `
 
 const StyledForm = styled.form`
+  padding: 20px 24px 0 24px;
   height: 100%;
   display: flex;
   flex-direction: column;
