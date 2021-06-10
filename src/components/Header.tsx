@@ -14,6 +14,7 @@ const StyledTitle = styled.h2`
   justify-self: center;
   position: relative;
   width: fit-content;
+  margin-bottom: 10px;
 
   &::after {
     content: '';

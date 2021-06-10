@@ -13,12 +13,12 @@ interface Props {
   >
 }
 
-const MainPage = ({ spotify, setTracks }: Props) => {
+const MainPage = ({ spotify, setTracks }: Props): JSX.Element => {
   const [
     seedObject,
     setSeedObject,
   ] = useState<SpotifyApi.RecommendationsOptionsObject>({
-    limit: 2,
+    limit: 20,
     seed_genres: 'classical',
   })
 
@@ -72,9 +72,6 @@ const Container = styled.div`
   grid-template-rows: auto 1fr;
 `
 
-const StyledTitle = styled.h2`
-  text-align: center;
-`
 const StyledForm = styled.form`
   height: 100%;
   display: flex;
