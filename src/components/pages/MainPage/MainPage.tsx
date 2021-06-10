@@ -1,23 +1,19 @@
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
 import Button from '../../common/Button/Button'
 import Slider from '../../common/Slider/Slider'
-import SpotifyWebApi from 'spotify-web-api-js'
-import { useState } from 'react'
+import Header from '../../Header'
+
 interface Props {
-  userData: UserData | null
   spotify: SpotifyWebApi.SpotifyWebApiJs
   setTracks: React.Dispatch<
     React.SetStateAction<SpotifyApi.TrackObjectSimplified[] | undefined>
   >
 }
 
-export interface UserData {
-  country: string
-  display_name: string | undefined
-  product: string
-}
-
-const MainPage = ({ userData, spotify, setTracks }: Props) => {
+const MainPage = ({ spotify, setTracks }: Props) => {
   const [
     seedObject,
     setSeedObject,
@@ -26,8 +22,11 @@ const MainPage = ({ userData, spotify, setTracks }: Props) => {
     seed_genres: 'classical',
   })
 
+  const history = useHistory()
+
   return (
     <Container>
+      <Header>Choose your kind</Header>
       <StyledForm onSubmit={handleSubmit}>
         <Slider
           title={'liveness'}
@@ -60,6 +59,7 @@ const MainPage = ({ userData, spotify, setTracks }: Props) => {
         }
       }
     )
+    history.push('recommendations')
   }
 }
 
@@ -68,6 +68,12 @@ export default MainPage
 const Container = styled.div`
   padding: 12px 24px;
   height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+`
+
+const StyledTitle = styled.h2`
+  text-align: center;
 `
 const StyledForm = styled.form`
   height: 100%;
