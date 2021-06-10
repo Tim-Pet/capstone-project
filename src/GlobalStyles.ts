@@ -38,8 +38,16 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 3rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 2rem;
+  margin: 0;
 }
 
 a {
