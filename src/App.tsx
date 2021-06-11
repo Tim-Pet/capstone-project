@@ -1,10 +1,10 @@
 import { useEffect, useState, useMemo } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login'
-import MainPage from './pages/MainPage/MainPage'
+import SelectPage from './pages/SelectPage'
 import { getTokenFromUrl } from './helper/spotify'
 import { Route, Switch } from 'react-router-dom'
-import RecommendationPage from './pages/RecommendationPage/RecommendationPage'
+import RecommendationPage from './pages/RecommendationPage'
 
 function App(): JSX.Element {
   const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
@@ -26,7 +26,7 @@ function App(): JSX.Element {
       {token ? (
         <Switch>
           <Route exact path="/">
-            <MainPage spotify={spotify} setTracks={setTracks} />
+            <SelectPage spotify={spotify} setTracks={setTracks} />
           </Route>
           <Route path="/recommendations">
             <RecommendationPage tracks={tracks} />

@@ -6,7 +6,7 @@ interface SongEntryProps {
 }
 
 function SongEntry({ name, artists }: SongEntryProps): JSX.Element {
-  let allArtists: string = artists.map(artist => artist.name).join(', ')
+  const allArtists: string = artists.map(artist => artist.name).join(', ')
 
   return (
     <Container>

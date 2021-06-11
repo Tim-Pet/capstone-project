@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import Header from './Header'
 
 describe('Header', (): void => {
-  it('contains children & gets rendered', (): void => {
+  it('Header contains children & gets rendered', (): void => {
     render(<Header>Your title</Header>)
     const button: HTMLElement = screen.getByRole('heading', {
       name: 'Your title',

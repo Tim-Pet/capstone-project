@@ -2,18 +2,18 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
-import Button from '../../components/common/Button/Button'
-import Slider from '../../components/common/Slider/Slider'
-import Header from '../../components/Header/Header'
+import Button from '../components/common/Button/Button'
+import Slider from '../components/common/Slider/Slider'
+import Header from '../components/Header/Header'
 
-interface Props {
+interface SelectPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
   setTracks: React.Dispatch<
     React.SetStateAction<SpotifyApi.TrackObjectSimplified[] | undefined>
   >
 }
 
-const MainPage = ({ spotify, setTracks }: Props): JSX.Element => {
+const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
   const [
     seedObject,
     setSeedObject,
@@ -63,7 +63,7 @@ const MainPage = ({ spotify, setTracks }: Props): JSX.Element => {
   }
 }
 
-export default MainPage
+export default SelectPage
 
 const Container = styled.div`
   display: grid;

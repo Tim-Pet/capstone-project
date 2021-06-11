@@ -1,6 +1,6 @@
-import Header from '../../components/Header/Header'
+import Header from '../components/Header/Header'
 import styled from 'styled-components/macro'
-import SongEntry from '../../components/SongEntry'
+import SongEntry from '../components/SongEntry/SongEntry'
 
 interface Props {
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
