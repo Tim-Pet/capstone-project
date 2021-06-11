@@ -4,7 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
 import Button from '../../components/common/Button/Button'
 import Slider from '../../components/common/Slider/Slider'
-import Header from '../../components/Header'
+import Header from '../../components/Header/Header'
 
 interface Props {
   spotify: SpotifyWebApi.SpotifyWebApiJs

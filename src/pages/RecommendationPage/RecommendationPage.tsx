@@ -1,4 +1,4 @@
-import Header from '../../components/Header'
+import Header from '../../components/Header/Header'
 import styled from 'styled-components/macro'
 import SongEntry from '../../components/SongEntry'
 

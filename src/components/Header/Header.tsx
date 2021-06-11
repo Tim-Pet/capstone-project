@@ -1,14 +1,14 @@
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
-import Button from './common/Button/Button'
+import Button from '../common/Button/Button'
 
 interface Props {
-  withBack: Boolean
+  withBack?: Boolean
   children: string
 }
 
-function Header({ withBack, children }: Props): JSX.Element {
+function Header({ withBack = false, children }: Props): JSX.Element {
   const history = useHistory()
 
   function goBack(): void {
