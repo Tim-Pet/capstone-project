@@ -16,7 +16,7 @@ jest.mock('@material-ui/core/Slider', () => (props: any) => {
 })
 
 describe('Slider', (): void => {
-  it('Slider gets rendered', (): void => {
+  it('Gets rendered', (): void => {
     render(
       <Slider
         title={'testSlider'}
@@ -30,11 +30,10 @@ describe('Slider', (): void => {
     const slider: HTMLElement = screen.getByRole('slider')
     expect(slider).toBeInTheDocument()
   })
-  it('Slider calls onChange', (): void => {
+  it('Calls onChange', (): void => {
     const handleChange: Function = jest.fn()
     render(
       <Slider
-        data-testid={'test'}
         title={'testSlider'}
         startValue={0.3}
         min={0}

@@ -3,10 +3,10 @@ import heroImg from '../assets/images/Login-hero.jpg'
 import Button from './common/Button/Button'
 
 function Login(): JSX.Element {
-  const authEndpoint: string = 'https://accounts.spotify.com/authorize'
-  const redirectUri: string = process.env.REACT_APP_REDIRECT_URI as string
-  const clientId: string = process.env.REACT_APP_CLIENT_ID as string
-  const scope: string = 'user-read-private'
+  const authEndpoint = 'https://accounts.spotify.com/authorize'
+  const redirectUri = process.env.REACT_APP_REDIRECT_URI as string
+  const clientId = process.env.REACT_APP_CLIENT_ID as string
+  const scope = 'user-read-private'
 
   return (
     <LoginContainer>

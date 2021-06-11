@@ -21,13 +21,13 @@ const artistsArray: SpotifyApi.ArtistObjectSimplified[] = [
 ]
 
 describe('SongEntry', (): void => {
-  it('SongEntry renders with name', (): void => {
+  it('Renders with name', (): void => {
     render(<SongEntry name={'Castle of glass'} artists={artistsArray} />)
     const song: HTMLElement = screen.getByText('Castle of glass')
     expect(song).toBeInTheDocument()
   })
 
-  it('SongEntry renders with artists in schema <*, *>', (): void => {
+  it('Renders with artists in schema <*, *>', (): void => {
     render(<SongEntry name={'Castle of glass'} artists={artistsArray} />)
     const songArtists: HTMLElement = screen.getByText('John Doe, Jane Doe')
     expect(songArtists).toBeInTheDocument()

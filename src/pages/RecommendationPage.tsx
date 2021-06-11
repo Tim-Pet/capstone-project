@@ -11,12 +11,8 @@ function RecommendationPage({ tracks }: Props): JSX.Element {
     <Container>
       <Header withBack={true}>Your Songs</Header>
       <SongList>
-        {tracks?.map(track => (
-          <SongEntry
-            key={track.name}
-            name={track.name}
-            artists={track.artists}
-          />
+        {tracks?.map(({ id, name, artists }) => (
+          <SongEntry key={id} name={name} artists={artists} />
         ))}
       </SongList>
     </Container>
@@ -30,9 +26,8 @@ const Container = styled.div`
   height: 100vh;
   padding: 12px 0;
 `
-const SongList = styled.ul`
-  list-style: none;
+const SongList = styled.div`
   margin: 0;
-  overflow-y: Auto;
+  overflow-y: auto;
   padding: 10px 24px 0 24px;
 `

@@ -19,8 +19,8 @@ const SliderComponent = ({
   onChange,
 }: SliderProps) => {
   return (
-    <div>
-      <h3>{title}</h3>
+    <label>
+      <CriteriaName>{title}</CriteriaName>
       <StyledSlider
         defaultValue={startValue}
         min={min}
@@ -29,13 +29,21 @@ const SliderComponent = ({
         onChange={(event: React.ChangeEvent<{}>, value: number | number[]) =>
           onChange(value as number)
         }
-        aria-labelledby="range-slider"
+        // aria-labelledby="range-slider"
       />
-    </div>
+    </label>
   )
 }
 
 export default SliderComponent
+
+const CriteriaName = styled.span`
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.125rem;
+  line-height: 2rem;
+  margin: 0;
+`
 
 const StyledSlider = styled(Slider)`
   .MuiSlider-track {

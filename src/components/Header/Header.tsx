@@ -3,17 +3,13 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import Button from '../common/Button/Button'
 
-interface Props {
+interface HeaderProps {
   withBack?: Boolean
   children: string
 }
 
-function Header({ withBack = false, children }: Props): JSX.Element {
-  const history = useHistory()
-
-  function goBack(): void {
-    history.goBack()
-  }
+function Header({ withBack = false, children }: HeaderProps): JSX.Element {
+  const { goBack } = useHistory()
 
   return (
     <Container>
@@ -29,7 +25,7 @@ function Header({ withBack = false, children }: Props): JSX.Element {
 
 export default Header
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   justify-content: center;
   position: relative;
@@ -50,10 +46,9 @@ const StrippedButton = styled(Button)`
   border-radius: 0;
   border: none;
   color: var(--color-text);
-  cursor: pointer;
   display: flex;
   font-size: 1.5rem;
-  left: 5%;
+  left: 16px;
   padding: 0;
   position: absolute;
   top: 0;

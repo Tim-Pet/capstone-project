@@ -10,7 +10,7 @@ describe('Button', (): void => {
     expect(button).toBeInTheDocument()
   })
 
-  it('Passed onClick gets called', (): void => {
+  it('calls `onClick` upon click', (): void => {
     const handleClick: Function = jest.fn()
     render(<Button onClick={handleClick}>Click me</Button>)
 

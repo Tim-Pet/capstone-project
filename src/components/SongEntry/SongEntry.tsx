@@ -18,7 +18,7 @@ function SongEntry({ name, artists }: SongEntryProps): JSX.Element {
 
 export default SongEntry
 
-const Container = styled.li`
+const Container = styled.section`
   margin-bottom: 15px;
   overflow: auto;
   position: relative;
