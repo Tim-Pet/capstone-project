@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro'
 
-interface Props {
+interface SongEntryProps {
   name: string
   artists: SpotifyApi.ArtistObjectSimplified[]
 }
 
-const SongEntry = ({ name, artists }: Props): JSX.Element => {
+function SongEntry({ name, artists }: SongEntryProps): JSX.Element {
   let allArtists: string = artists.map(artist => artist.name).join(', ')
 
   return (
@@ -19,19 +19,19 @@ const SongEntry = ({ name, artists }: Props): JSX.Element => {
 export default SongEntry
 
 const Container = styled.li`
-  position: relative;
-  width: 100%;
   margin-bottom: 15px;
   overflow: auto;
+  position: relative;
+  width: 100%;
 
   &::before {
+    background-color: var(--color-text-light);
+    bottom: 0;
     content: '';
     height: 1px;
-    width: 60%;
-    position: absolute;
-    bottom: 0;
     left: 20%;
-    background-color: var(--color-text-light);
+    position: absolute;
+    width: 60%;
   }
 `
 
@@ -39,17 +39,17 @@ const SongName = styled.span`
   display: block;
   font-size: 0.875rem;
   margin-bottom: 5px;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 `
 
 const ArtistName = styled.span`
-  text-overflow: ellipsis;
   display: block;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
   font-size: 0.75rem;
+  max-width: 100%;
+  overflow: hidden;
   padding-bottom: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `

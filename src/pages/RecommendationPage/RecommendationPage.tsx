@@ -1,12 +1,12 @@
-import Header from '../../Header'
+import Header from '../../components/Header'
 import styled from 'styled-components/macro'
-import SongEntry from '../../SongEntry'
+import SongEntry from '../../components/SongEntry'
 
 interface Props {
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
 }
 
-const RecommendationPage = ({ tracks }: Props) => {
+function RecommendationPage({ tracks }: Props): JSX.Element {
   return (
     <Container>
       <Header withBack={true}>Your Songs</Header>
@@ -25,14 +25,14 @@ const RecommendationPage = ({ tracks }: Props) => {
 
 export default RecommendationPage
 const Container = styled.div`
-  padding: 12px 0;
-  height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
+  height: 100vh;
+  padding: 12px 0;
 `
 const SongList = styled.ul`
-  padding: 10px 24px 0 24px;
-  overflow-y: Auto;
   list-style: none;
   margin: 0;
+  overflow-y: Auto;
+  padding: 10px 24px 0 24px;
 `

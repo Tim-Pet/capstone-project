@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro'
 import Slider from '@material-ui/core/Slider'
+import styled from 'styled-components/macro'
 
 interface SliderProps {
   title: string

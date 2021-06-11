@@ -9,6 +9,7 @@ describe('Button', (): void => {
     const button: HTMLElement = screen.getByRole('button', { name: 'Click me' })
     expect(button).toBeInTheDocument()
   })
+
   it('Passed onClick gets called', (): void => {
     const handleClick: Function = jest.fn()
     render(<Button onClick={handleClick}>Click me</Button>)
