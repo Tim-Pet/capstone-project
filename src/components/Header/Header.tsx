@@ -60,14 +60,4 @@ const StyledTitle = styled.h2`
   margin-top: 32px;
   position: relative;
   width: fit-content;
-
-  &::after {
-    background-color: var(--color-text);
-    bottom: 0;
-    content: '';
-    height: 1px;
-    left: -5%;
-    position: absolute;
-    width: 110%;
-  }
 `
