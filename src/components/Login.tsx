@@ -2,11 +2,11 @@ import styled from 'styled-components/macro'
 import heroImg from '../assets/images/Login-hero.jpg'
 import Button from './common/Button/Button'
 
-const Login = (): JSX.Element => {
-  const authEndpoint: string = 'https://accounts.spotify.com/authorize'
-  const redirectUri: string = process.env.REACT_APP_REDIRECT_URI as string
-  const clientId: string = process.env.REACT_APP_CLIENT_ID as string
-  const scope: string = 'user-read-private'
+function Login(): JSX.Element {
+  const authEndpoint = 'https://accounts.spotify.com/authorize'
+  const redirectUri = process.env.REACT_APP_REDIRECT_URI as string
+  const clientId = process.env.REACT_APP_CLIENT_ID as string
+  const scope = 'user-read-private'
 
   return (
     <LoginContainer>
@@ -72,8 +72,8 @@ const Description = styled.p`
 `
 
 const LoginButton = styled(Button)`
-  width: 100%;
   text-align: center;
+  width: 100%;
 `
 const RegisterLink = styled.a`
   font-size: 16px;

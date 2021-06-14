@@ -1,25 +1,42 @@
 import { useEffect, useState, useMemo } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login'
-import MainPage, { UserData } from './components/MainPage/MainPage'
+import SelectPage from './pages/SelectPage'
 import { getTokenFromUrl } from './helper/spotify'
+import { Route, Switch } from 'react-router-dom'
+import RecommendationPage from './pages/RecommendationPage'
 
 function App(): JSX.Element {
-  const [userData, setUserData] = useState<UserData | null>(null)
+  const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
 
-  const token = useMemo(getTokenFromUrl, [])
+  const token: string | undefined = useMemo(getTokenFromUrl, [])
 
-  const spotify = new SpotifyWebApi()
+  const spotify: SpotifyWebApi.SpotifyWebApiJs = new SpotifyWebApi()
 
   useEffect((): void => {
     if (token) {
       removeHash()
       spotify.setAccessToken(token)
-      fetchUserData()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
-  return <div>{token ? <MainPage userData={userData} /> : <Login />}</div>
+  return (
+    <div>
+      {token ? (
+        <Switch>
+          <Route exact path="/">
+            <SelectPage spotify={spotify} setTracks={setTracks} />
+          </Route>
+          <Route path="/recommendations">
+            <RecommendationPage tracks={tracks} />
+          </Route>
+        </Switch>
+      ) : (
+        <Login />
+      )}
+    </div>
+  )
 
   function removeHash(): void {
     window.history.pushState(
@@ -27,17 +44,6 @@ function App(): JSX.Element {
       document.title,
       window.location.pathname + window.location.search
     )
-  }
-
-  function fetchUserData(): void {
-    spotify.getMe().then(user => {
-      const data: UserData = {
-        country: user.country,
-        display_name: user.display_name,
-        product: user.product,
-      }
-      setUserData(data)
-    })
   }
 }
 

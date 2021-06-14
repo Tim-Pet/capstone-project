@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 interface ButtonProps {
-  children: string
+  children: any
   component?: string | undefined
   href?: string
   as?: React.ElementType
+  onClick?: Function
 }
 
 const Button = ({ children, component = 'button', ...props }: ButtonProps) => {
