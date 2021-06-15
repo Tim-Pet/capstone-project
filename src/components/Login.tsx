@@ -6,7 +6,7 @@ function Login(): JSX.Element {
   const authEndpoint = 'https://accounts.spotify.com/authorize'
   const redirectUri = process.env.REACT_APP_REDIRECT_URI as string
   const clientId = process.env.REACT_APP_CLIENT_ID as string
-  const scope = 'user-read-private'
+  const scope = ['user-read-private', 'playlist-modify-public'].join('%20')
 
   return (
     <LoginContainer>

@@ -1,10 +1,13 @@
-import React from 'react'
+import SpotifyWebApi from 'spotify-web-api-js'
 import { DefaultCreatePlaylistForm } from '../components/CreatePlaylistForm/CreatePlaylistForm.stories'
 import Header from '../components/Header/Header'
 
-interface Props {}
+interface CreatePlaylistPageProps {
+  spotify: SpotifyWebApi.SpotifyWebApiJs
+  userId: string
+}
 
-const CreatePlaylistPage = (props: Props) => {
+const CreatePlaylistPage = ({ spotify, userId }: CreatePlaylistPageProps) => {
   return (
     <div>
       <Header withBack={true}>Create Playlist</Header>
@@ -16,10 +19,26 @@ const CreatePlaylistPage = (props: Props) => {
       />
     </div>
   )
-  function handleSubmit(input: { title: string; description?: string }): void {
-    console.log(input)
-    //Create Playlist
-    //Add Titles
+  function handleSubmit({
+    title,
+    description,
+  }: {
+    title: string
+    description: string
+  }): void {
+    spotify.createPlaylist(userId, { name: title }, (err, resp) => {
+      if (err !== null) {
+        console.log(err)
+      } else {
+        // Add Tracks to Playlist
+        // spotify.addTracksToPlaylist(resp.id, trackUris, )
+        // Playlist ID = resp.id
+        // Track uris
+        // options
+        // callback (err, resp)
+        console.log(resp)
+      }
+    })
   }
 }
 
