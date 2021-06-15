@@ -16,7 +16,8 @@ const CreatePlaylistPage = (props: Props) => {
       />
     </div>
   )
-  function handleSubmit(): void {
+  function handleSubmit(input: { title: string; description?: string }): void {
+    console.log(input)
     //Create Playlist
     //Add Titles
   }

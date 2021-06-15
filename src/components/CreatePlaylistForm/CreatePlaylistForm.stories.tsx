@@ -4,7 +4,7 @@ import CreatePlaylistForm from './CreatePlaylistForm'
 export default {
   title: 'CreatePlaylistForm',
   component: CreatePlaylistForm,
-  argTypes: { onClick: { action: 'clicked' } },
+  argTypes: { onSubmit: { action: 'submitted' } },
 } as Meta
 
 interface CreatePlaylistFormProps {

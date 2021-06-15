@@ -7,6 +7,7 @@ interface ButtonProps {
   href?: string
   as?: React.ElementType
   onClick?: Function
+  disabled?: Boolean
 }
 
 const Button = ({ children, component = 'button', ...props }: ButtonProps) => {

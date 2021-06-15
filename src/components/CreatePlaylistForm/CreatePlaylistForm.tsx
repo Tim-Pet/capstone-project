@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import Button from '../common/Button/Button'
 import styled from 'styled-components/macro'
 
@@ -15,28 +15,49 @@ const PlaylistForm = ({
   buttonText,
   onSubmit,
 }: PlaylistFormProps) => {
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [inputStates, setInputStates] = useState({ title: '', description: '' })
+
+  useEffect(() => {
+    validateForm()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputStates])
+
   return (
     <div>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="title">{titleLabel}</label>
-        <input type="text" name="" id="title" />
+        <input type="text" name="title" id="title" onChange={handleChange} />
         <label htmlFor="description">{textLabel}</label>
-        <textarea name="" id="description" cols={30} rows={4}></textarea>
-        <Button>{buttonText}</Button>
+        <textarea
+          name="description"
+          id="description"
+          cols={30}
+          rows={4}
+          onChange={handleChange}
+        ></textarea>
+        <Button disabled={isDisabled}>{buttonText}</Button>
       </StyledForm>
     </div>
   )
 
   function validateForm(): void {
-    //Validate onChange
+    setIsDisabled(inputStates.title.trim().length === 0)
+    console.log(inputStates.title.trim().length === 0)
+  }
+
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void {
+    const { name, value } = event.target
+    setInputStates({ ...inputStates, [name]: value })
   }
 
   function handleSubmit(event: React.FormEvent<{}>) {
     event.preventDefault()
-    //pass Title & Description
-    const title = 'test'
-    const description = 'test'
-    onSubmit(title, description)
+    if (isDisabled) return //early out for Safari
+    onSubmit(inputStates)
+    setInputStates({ title: '', description: '' })
   }
 }
 
