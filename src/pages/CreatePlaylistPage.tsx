@@ -1,6 +1,8 @@
 import SpotifyWebApi from 'spotify-web-api-js'
 import { DefaultCreatePlaylistForm } from '../components/CreatePlaylistForm/CreatePlaylistForm.stories'
 import Header from '../components/Header/Header'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 interface CreatePlaylistPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
@@ -13,8 +15,9 @@ const CreatePlaylistPage = ({
   userId,
   tracks,
 }: CreatePlaylistPageProps) => {
+  const { goBack } = useHistory()
   return (
-    <div>
+    <Container>
       <Header withBack={true}>Create Playlist</Header>
       <DefaultCreatePlaylistForm
         titleLabel="Title"
@@ -22,7 +25,7 @@ const CreatePlaylistPage = ({
         buttonText="Create Playlist"
         onSubmit={handleSubmit}
       />
-    </div>
+    </Container>
   )
   function handleSubmit({
     title,
@@ -54,7 +57,15 @@ const CreatePlaylistPage = ({
         }
       }
     )
+    goBack()
   }
 }
 
 export default CreatePlaylistPage
+
+const Container = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 12px 0;
+`
