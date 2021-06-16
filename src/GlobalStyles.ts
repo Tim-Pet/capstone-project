@@ -64,6 +64,7 @@ textarea {
 
 input, textarea {
   font: inherit;
+  color: inherit
 }
 `
 export default GlobalStyle

@@ -31,6 +31,7 @@ const PlaylistForm = ({
           type="text"
           name="title"
           id="title"
+          placeholder="Title of your Playlist (required)"
           onChange={handleChange}
         />
         <StyledTextareaLabel htmlFor="description">
@@ -41,6 +42,7 @@ const PlaylistForm = ({
           id="description"
           cols={24}
           rows={8}
+          placeholder="Description of your Playlist (optional)"
           onChange={handleChange}
         ></StyledTextarea>
       </ContentContainer>
@@ -88,10 +90,15 @@ const StyledInput = styled.input`
   border: none;
   border-bottom: 1px solid var(--color-text);
   margin-bottom: 20px;
+  padding: 4px 8px;
 
   :focus {
-    border-bottom: 1px solid var(--color-accent-light);
+    border-bottom: 1px solid var(--color-accent);
     outline: none;
+  }
+
+  ::placeholder {
+    color: var(--color-text);
   }
 `
 const StyledTextareaLabel = styled.label`
@@ -107,6 +114,10 @@ const StyledTextarea = styled.textarea`
   :focus {
     border: 1px solid var(--color-accent);
     outline: none;
+  }
+
+  ::placeholder {
+    color: var(--color-text);
   }
 `
 

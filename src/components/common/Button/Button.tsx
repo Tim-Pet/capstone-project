@@ -27,4 +27,9 @@ const BtnWrapper = styled.button`
   color: white;
   font-weight: 400;
   padding: 12px 30%;
+
+  :disabled {
+    background-color: var(--color-text-light);
+    color: var(--color-text);
+  }
 `
