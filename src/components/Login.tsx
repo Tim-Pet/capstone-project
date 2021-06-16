@@ -14,7 +14,7 @@ function Login(): JSX.Element {
       <ContentContainer>
         <Title>Recofy</Title>
         <Description>
-          Login with Spotify to get access to your personal reommendations
+          Login with Spotify to get access to your personal recommendations
         </Description>
         <LoginButton
           component={'a'}
