@@ -1,8 +1,8 @@
+import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
+import styled from 'styled-components/macro'
 import { DefaultCreatePlaylistForm } from '../components/CreatePlaylistForm/CreatePlaylistForm.stories'
 import Header from '../components/Header/Header'
-import { useHistory } from 'react-router-dom'
-import styled from 'styled-components/macro'
 
 interface CreatePlaylistPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
@@ -64,8 +64,8 @@ const CreatePlaylistPage = ({
 export default CreatePlaylistPage
 
 const Container = styled.div`
-  height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
+  height: 100vh;
   padding: 12px 0;
 `

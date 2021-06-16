@@ -75,20 +75,20 @@ export default PlaylistForm
 
 const StyledForm = styled.form`
   display: grid;
-  padding: 0 10px;
   grid-template-rows: 1fr 50px;
+  padding: 0 10px;
 `
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
 const StyledInputLabel = styled.label`
-  margin-top: 24px;
   margin-bottom: 8px;
+  margin-top: 24px;
 `
 const StyledInput = styled.input`
-  border: none;
   border-bottom: 1px solid var(--color-text);
+  border: none;
   margin-bottom: 20px;
   padding: 4px 8px;
 
@@ -108,8 +108,8 @@ const StyledTextareaLabel = styled.label`
 const StyledTextarea = styled.textarea`
   border-radius: 4px;
   border: 1px solid var(--color-text);
-  resize: none;
   padding: 4px 8px;
+  resize: none;
 
   :focus {
     border: 1px solid var(--color-accent);
