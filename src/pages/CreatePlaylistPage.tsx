@@ -1,3 +1,4 @@
+import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
@@ -63,9 +64,8 @@ const CreatePlaylistPage = ({
 
 export default CreatePlaylistPage
 
-const Container = styled.div`
+const Container = styled(Div100vh)`
   display: grid;
   grid-template-rows: auto 1fr;
-  height: 100vh;
   padding: 12px 0;
 `

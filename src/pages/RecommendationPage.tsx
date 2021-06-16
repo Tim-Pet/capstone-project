@@ -1,3 +1,4 @@
+import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from '../components/common/Button/Button'
@@ -28,10 +29,9 @@ function RecommendationPage({ tracks }: Props): JSX.Element {
 }
 
 export default RecommendationPage
-const Container = styled.div`
+const Container = styled(Div100vh)`
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
   padding: 12px 0;
 `
 const SongList = styled.div`
