@@ -5,9 +5,14 @@ import Header from '../components/Header/Header'
 interface CreatePlaylistPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
   userId: string
+  tracks: SpotifyApi.TrackObjectSimplified[] | undefined
 }
 
-const CreatePlaylistPage = ({ spotify, userId }: CreatePlaylistPageProps) => {
+const CreatePlaylistPage = ({
+  spotify,
+  userId,
+  tracks,
+}: CreatePlaylistPageProps) => {
   return (
     <div>
       <Header withBack={true}>Create Playlist</Header>
@@ -26,19 +31,29 @@ const CreatePlaylistPage = ({ spotify, userId }: CreatePlaylistPageProps) => {
     title: string
     description: string
   }): void {
-    spotify.createPlaylist(userId, { name: title }, (err, resp) => {
-      if (err !== null) {
-        console.log(err)
-      } else {
-        // Add Tracks to Playlist
-        // spotify.addTracksToPlaylist(resp.id, trackUris, )
-        // Playlist ID = resp.id
-        // Track uris
-        // options
-        // callback (err, resp)
-        console.log(resp)
+    const trackUris = tracks?.map(({ uri }) => uri) as string[]
+    spotify.createPlaylist(
+      userId,
+      { name: title, description: description },
+      (err, resp) => {
+        if (err !== null) {
+          console.log('Error while creating Playlist:', err)
+        } else {
+          spotify.addTracksToPlaylist(
+            resp.id,
+            trackUris,
+            undefined,
+            (err, resp) => {
+              if (err !== null) {
+                console.log('Error while adding Tracks to the playlist:', err)
+              } else {
+                console.log(resp)
+              }
+            }
+          )
+        }
       }
-    })
+    )
   }
 }
 

@@ -43,7 +43,6 @@ const PlaylistForm = ({
 
   function validateForm(): void {
     setIsDisabled(inputStates.title.trim().length === 0)
-    console.log(inputStates.title.trim().length === 0)
   }
 
   function handleChange(
