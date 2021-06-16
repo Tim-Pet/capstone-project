@@ -41,7 +41,8 @@ const SongList = styled.div`
 `
 
 const ButtonWrapper = styled.div`
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5px 10px 0 10px;
 `

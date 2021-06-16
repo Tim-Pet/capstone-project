@@ -87,8 +87,8 @@ const StyledInputLabel = styled.label`
   margin-top: 24px;
 `
 const StyledInput = styled.input`
-  border-bottom: 1px solid var(--color-text);
   border: none;
+  border-bottom: 1px solid var(--color-text);
   margin-bottom: 20px;
   padding: 4px 8px;
 
@@ -122,6 +122,7 @@ const StyledTextarea = styled.textarea`
 `
 
 const ButtonWrapper = styled.div`
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
