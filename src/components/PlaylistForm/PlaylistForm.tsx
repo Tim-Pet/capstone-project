@@ -9,12 +9,12 @@ interface PlaylistFormProps {
   onSubmit: Function
 }
 
-const PlaylistForm = ({
+function PlaylistForm({
   titleLabel,
   textLabel,
   buttonText,
   onSubmit,
-}: PlaylistFormProps) => {
+}: PlaylistFormProps) {
   const [isDisabled, setIsDisabled] = useState(true)
   const [inputStates, setInputStates] = useState({ title: '', description: '' })
 

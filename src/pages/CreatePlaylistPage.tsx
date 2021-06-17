@@ -2,7 +2,7 @@ import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
-import { DefaultCreatePlaylistForm } from '../components/CreatePlaylistForm/CreatePlaylistForm.stories'
+import { PlaylistForm } from '../components/PlaylistForm/PlaylistForm.stories'
 import Header from '../components/Header/Header'
 
 interface CreatePlaylistPageProps {
@@ -20,7 +20,7 @@ const CreatePlaylistPage = ({
   return (
     <Container>
       <Header withBack={true}>Create Playlist</Header>
-      <DefaultCreatePlaylistForm
+      <PlaylistForm
         titleLabel="Title"
         textLabel="Description"
         buttonText="Create Playlist"
