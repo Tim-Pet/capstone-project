@@ -2,7 +2,7 @@ import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
-import { PlaylistForm } from '../components/PlaylistForm/PlaylistForm.stories'
+import PlaylistForm from '../components/PlaylistForm/PlaylistForm'
 import Header from '../components/Header/Header'
 
 interface CreatePlaylistPageProps {
