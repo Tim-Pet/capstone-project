@@ -7,6 +7,7 @@ interface PlaylistFormProps {
   textLabel: string
   buttonText: string
   onSubmit: Function
+  serverError: Boolean
 }
 
 function PlaylistForm({
@@ -14,10 +15,10 @@ function PlaylistForm({
   textLabel,
   buttonText,
   onSubmit,
+  serverError,
 }: PlaylistFormProps) {
   const [isDisabled, setIsDisabled] = useState(true)
   const [inputStates, setInputStates] = useState({ title: '', description: '' })
-
   useEffect(() => {
     validateForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,6 +33,7 @@ function PlaylistForm({
           name="title"
           id="title"
           placeholder="Title of your Playlist (required)"
+          value={inputStates.title}
           onChange={handleChange}
         />
         <StyledTextareaLabel htmlFor="description">
@@ -43,10 +45,16 @@ function PlaylistForm({
           cols={24}
           rows={8}
           placeholder="Description of your Playlist (optional)"
+          value={inputStates.description}
           onChange={handleChange}
         ></StyledTextarea>
       </ContentContainer>
       <ButtonWrapper>
+        {serverError && (
+          <ErrPrompt>
+            Service is currently unavailable. Please try again later
+          </ErrPrompt>
+        )}
         <Button disabled={isDisabled}>{buttonText}</Button>
       </ButtonWrapper>
     </StyledForm>
@@ -75,8 +83,8 @@ export default PlaylistForm
 
 const StyledForm = styled.form`
   display: grid;
-  grid-template-rows: 1fr 50px;
-  padding: 0 10px;
+  grid-template-rows: 1fr auto;
+  padding: 0 15px;
 `
 const ContentContainer = styled.div`
   display: flex;
@@ -123,6 +131,16 @@ const StyledTextarea = styled.textarea`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+const ErrPrompt = styled.p`
+  color: #ff0000a4;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
 `

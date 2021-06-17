@@ -11,6 +11,7 @@ interface PlaylistFormProps {
   titleLabel: string
   textLabel: string
   buttonText: string
+  serverError: Boolean
   onSubmit: Function
 }
 
@@ -21,4 +22,13 @@ DefaultPlaylistForm.args = {
   titleLabel: 'Title',
   textLabel: 'Description',
   buttonText: 'Create playlist',
+  serverError: false,
+}
+
+export const ErrorPlaylistForm: Story<PlaylistFormProps> = Template.bind({})
+ErrorPlaylistForm.args = {
+  titleLabel: 'Title',
+  textLabel: 'Description',
+  buttonText: 'Create playlist',
+  serverError: true,
 }

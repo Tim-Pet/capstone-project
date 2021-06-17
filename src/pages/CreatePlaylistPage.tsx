@@ -1,5 +1,5 @@
 import Div100vh from 'react-div-100vh'
-import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
 import PlaylistForm from '../components/PlaylistForm/PlaylistForm'
@@ -16,7 +16,8 @@ const CreatePlaylistPage = ({
   userId,
   tracks,
 }: CreatePlaylistPageProps) => {
-  const { goBack } = useHistory()
+  const [serverError, setServerError] = useState(false)
+
   return (
     <Container>
       <Header withBack={true}>Create Playlist</Header>
@@ -24,6 +25,7 @@ const CreatePlaylistPage = ({
         titleLabel="Title"
         textLabel="Description"
         buttonText="Create Playlist"
+        serverError={serverError}
         onSubmit={handleSubmit}
       />
     </Container>
@@ -41,7 +43,7 @@ const CreatePlaylistPage = ({
       { name: title, description: description },
       (err, resp) => {
         if (err !== null) {
-          console.log('Error while creating Playlist:', err)
+          handleError('Error while creating Playlist:', err)
         } else {
           spotify.addTracksToPlaylist(
             resp.id,
@@ -49,7 +51,7 @@ const CreatePlaylistPage = ({
             undefined,
             (err, resp) => {
               if (err !== null) {
-                console.log('Error while adding Tracks to the playlist:', err)
+                handleError('Error while adding Tracks to the playlist:', err)
               } else {
                 console.log(resp)
               }
@@ -58,7 +60,14 @@ const CreatePlaylistPage = ({
         }
       }
     )
-    goBack()
+  }
+
+  function handleError(
+    msg: string = 'Error: ',
+    err: SpotifyWebApi.ErrorObject
+  ) {
+    setServerError(true)
+    setTimeout(() => setServerError(false), 5000)
   }
 }
 
