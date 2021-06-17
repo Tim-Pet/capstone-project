@@ -66,6 +66,7 @@ const CreatePlaylistPage = ({
     msg: string = 'Error: ',
     err: SpotifyWebApi.ErrorObject
   ) {
+    console.log(msg, err)
     setServerError(true)
     setTimeout(() => setServerError(false), 5000)
   }
