@@ -1,3 +1,4 @@
+import Div100vh from 'react-div-100vh'
 import styled from 'styled-components/macro'
 import heroImg from '../assets/images/Login-hero.jpg'
 import Button from './common/Button/Button'
@@ -6,7 +7,7 @@ function Login(): JSX.Element {
   const authEndpoint = 'https://accounts.spotify.com/authorize'
   const redirectUri = process.env.REACT_APP_REDIRECT_URI as string
   const clientId = process.env.REACT_APP_CLIENT_ID as string
-  const scope = 'user-read-private'
+  const scope = ['user-read-private', 'playlist-modify-public'].join('%20')
 
   return (
     <LoginContainer>
@@ -14,7 +15,7 @@ function Login(): JSX.Element {
       <ContentContainer>
         <Title>Recofy</Title>
         <Description>
-          Login with Spotify to get access to your personal reommendations
+          Login with Spotify to get access to your personal recommendations
         </Description>
         <LoginButton
           component={'a'}
@@ -36,16 +37,14 @@ function Login(): JSX.Element {
 
 export default Login
 
-const LoginContainer = styled.div`
-  height: 100vh;
-  max-height: 100vh;
+const LoginContainer = styled(Div100vh)`
   overflow-y: hidden;
   overflow: hidden;
 `
 const StyledImg = styled.img`
   height: 40%;
   object-fit: cover;
-  object-position: 100% top;
+  object-position: 100% 100%;
   width: 100%;
 `
 

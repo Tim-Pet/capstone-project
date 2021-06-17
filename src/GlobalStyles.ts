@@ -61,5 +61,10 @@ button,
 textarea {
   font-size: inherit;
 }
+
+input, textarea {
+  color: inherit;
+  font: inherit;
+}
 `
 export default GlobalStyle
