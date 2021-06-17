@@ -42,7 +42,7 @@ const Container = styled.header`
 `
 const StrippedButton = styled(Button)`
   align-items: center;
-  background-color: transparent;
+  background-color: transparent !important;
   border-radius: 0;
   border: none;
   color: var(--color-text);

@@ -12,21 +12,22 @@ interface ButtonProps {
 
 const Button = ({ children, component = 'button', ...props }: ButtonProps) => {
   return (
-    <BtnWrapper as={component} {...props}>
+    <StyledButton as={component} {...props}>
       {children}
-    </BtnWrapper>
+    </StyledButton>
   )
 }
 
 export default Button
 
-const BtnWrapper = styled.button`
+const StyledButton = styled.button`
   background-color: #007bf5;
   border-radius: 60px;
   border: none;
   color: white;
   font-weight: 400;
   padding: 12px 30%;
+  width: fit-content;
 
   :disabled {
     background-color: var(--color-text-light);

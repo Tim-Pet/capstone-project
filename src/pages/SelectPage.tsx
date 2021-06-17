@@ -37,7 +37,9 @@ const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
           step={0.01}
           onChange={handleLivenessChange}
         />
-        <Button>Get your Playlist</Button>
+        <ButtonWrapper>
+          <Button>Get your Playlist</Button>
+        </ButtonWrapper>
       </StyledForm>
     </Container>
   )
@@ -78,4 +80,9 @@ const StyledForm = styled.form`
   height: 100%;
   justify-content: space-between;
   padding: 20px 24px 0 24px;
+`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
