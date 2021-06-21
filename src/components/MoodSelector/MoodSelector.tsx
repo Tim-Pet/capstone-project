@@ -1,12 +1,16 @@
 import styled from 'styled-components/macro'
-import MoodItem from './MoodItem'
 import { useState } from 'react'
+import MoodItem from './MoodItem'
 import Button from '../common/Button/Button'
+import React from 'react'
+import Div100vh from 'react-div-100vh'
 
 interface Props {}
 
 const MoodSelector = (props: Props) => {
-  let currentMood: string | null = null
+  const [currentMood, setCurrentMood] = useState('Testitem 1')
+
+  let activeMood = 'Testitem 1'
 
   const moods = [
     'Testitem 1',
@@ -27,47 +31,49 @@ const MoodSelector = (props: Props) => {
           <MoodItem key={mood}>{mood}</MoodItem>
         ))}
       </InnerContainer>
-      <Button onClick={() => console.log(currentMood)}>Done</Button>
+      <Button onClick={handleClick}>Done</Button>
     </TmpContainer>
   )
-  function handleScroll(event: any) {
-    const moodList = event.target
-    const moodItems: Array<HTMLElement> = [...moodList.children]
+  function handleScroll(event: React.UIEvent<HTMLUListElement>) {
+    const moodList = event.target as HTMLUListElement
+    const moodItems = [...moodList.children] as Array<HTMLElement>
     const moodItemCenter = moodItems[0].offsetHeight / 2 // Generic center of a single listItem
     const boxCenter = moodList.offsetHeight / 2
 
-    const botLine = boxCenter + 10 // 10px below center
-    const topLine = boxCenter - 20 // 30px above center
-    // moodList.scrollTop gives scroll position -60 to 253 at the moment (due to bounce)
-    // moodList.getBoundingClientRect().top --> Distance Browser window to Container
-    // moodItem.getBoundingClientRect().top --> Distance to browser window to ListItem
+    const botLine = boxCenter + 11 // 10px below center
+    const topLine = boxCenter - 21 // 20px above center --> 32px(2rem) in total
+
     moodItems.forEach(moodItem => {
-      // Distance to containers top
+      // Distance to container top
       const position =
         moodItem.getBoundingClientRect().top +
         moodItemCenter -
         moodList.getBoundingClientRect().top
 
-      // if (Element below topline & above botLine)
+      // true if Element below topline & above botLine
       if (position > topLine && position < botLine) {
         setActiveMood(moodItem)
       } else {
-        moodItem.style.color = 'var(--color-black)'
+        moodItem.style.color = 'inherit'
         moodItem.style.transform = 'scale(1)'
       }
     })
   }
 
-  function setActiveMood(moodItem: any) {
+  function setActiveMood(moodItem: HTMLElement) {
     moodItem.style.color = 'blue'
     moodItem.style.transform = 'scale(1.2)'
-    currentMood = moodItem.innerText
+    activeMood = moodItem.innerText
+  }
+
+  function handleClick() {
+    setCurrentMood(activeMood)
+    console.log(activeMood)
   }
 }
 
 export default MoodSelector
-const TmpContainer = styled.div`
-  height: 100vh;
+const TmpContainer = styled(Div100vh)`
   width: 100vw;
   display: grid;
   place-items: center;
