@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login'
+import MoodSelector from './components/MoodSelector/MoodSelector'
 import { getTokenFromUrl } from './helper/spotify'
 import CreatePlaylistPage from './pages/CreatePlaylistPage'
 import RecommendationPage from './pages/RecommendationPage'
@@ -26,7 +27,7 @@ function App(): JSX.Element {
 
   return (
     <div>
-      {token ? (
+      {/* {token ? (
         <Switch>
           <Route exact path="/">
             <SelectPage spotify={spotify} setTracks={setTracks} />
@@ -44,7 +45,8 @@ function App(): JSX.Element {
         </Switch>
       ) : (
         <Login />
-      )}
+      )} */}
+      <MoodSelector />
     </div>
   )
 
