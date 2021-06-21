@@ -1,14 +1,46 @@
 import styled from 'styled-components/macro'
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import MoodItem from './MoodItem'
 import Button from '../common/Button/Button'
 import React from 'react'
 import Div100vh from 'react-div-100vh'
 
-interface Props {}
+interface Props {
+  moods?: string[]
+}
 
+interface Variables {
+  moodList: HTMLUListElement
+  moodItems: Array<HTMLElement>
+  moodItemCenter: number
+  boxCenter: number
+  bottomLine: number
+  topLine: number
+}
 const MoodSelector = (props: Props) => {
   const [currentMood, setCurrentMood] = useState('Testitem 1')
+
+  const moodListRef = useRef<HTMLUListElement>(null)
+  const variables = useRef<Variables | null>(null)
+
+  useLayoutEffect(() => {
+    if (moodListRef.current !== null) {
+      const moodItems = [...moodListRef.current.children] as Array<HTMLElement>
+      const moodItemCenter = moodItems[0].offsetHeight / 2
+      const boxCenter = moodListRef.current.offsetHeight / 2
+      const bottomLine = boxCenter + 11 // 10px below center
+      const topLine = boxCenter - 21 // 20px above center --> 32px(2rem) in total
+
+      variables.current = {
+        moodList: moodListRef.current,
+        moodItems,
+        moodItemCenter,
+        boxCenter,
+        bottomLine,
+        topLine,
+      }
+    }
+  }, [])
 
   let activeMood = 'Testitem 1'
 
@@ -26,7 +58,7 @@ const MoodSelector = (props: Props) => {
   ]
   return (
     <TmpContainer>
-      <InnerContainer onScroll={handleScroll}>
+      <InnerContainer onScroll={handleScroll} ref={moodListRef}>
         {moods.map(mood => (
           <MoodItem key={mood}>{mood}</MoodItem>
         ))}
@@ -34,14 +66,15 @@ const MoodSelector = (props: Props) => {
       <Button onClick={handleClick}>Done</Button>
     </TmpContainer>
   )
-  function handleScroll(event: React.UIEvent<HTMLUListElement>) {
-    const moodList = event.target as HTMLUListElement
-    const moodItems = [...moodList.children] as Array<HTMLElement>
-    const moodItemCenter = moodItems[0].offsetHeight / 2 // Generic center of a single listItem
-    const boxCenter = moodList.offsetHeight / 2
 
-    const botLine = boxCenter + 11 // 10px below center
-    const topLine = boxCenter - 21 // 20px above center --> 32px(2rem) in total
+  function handleScroll() {
+    const {
+      moodItems,
+      moodItemCenter,
+      moodList,
+      topLine,
+      bottomLine,
+    } = variables.current!
 
     moodItems.forEach(moodItem => {
       // Distance to container top
@@ -51,7 +84,7 @@ const MoodSelector = (props: Props) => {
         moodList.getBoundingClientRect().top
 
       // true if Element below topline & above botLine
-      if (position > topLine && position < botLine) {
+      if (position > topLine && position < bottomLine) {
         setActiveMood(moodItem)
       } else {
         moodItem.style.color = 'inherit'
@@ -68,7 +101,6 @@ const MoodSelector = (props: Props) => {
 
   function handleClick() {
     setCurrentMood(activeMood)
-    console.log(activeMood)
   }
 }
 
