@@ -3,6 +3,7 @@ import Div100vh from 'react-div-100vh'
 import styled from 'styled-components/macro'
 import Button from '../common/Button/Button'
 import MoodItem from './MoodItem'
+import CloseIcon from '@material-ui/icons/Close'
 
 interface Props {
   moods: { name: string; id: number }[]
@@ -48,16 +49,22 @@ function MoodSelector({ moods, preselectedMoodId }: Props): JSX.Element {
 
   return (
     <Wrapper>
-      <OuterContainer>
-        <InnerContainer onScroll={handleScroll} ref={moodListRef}>
+      <PopUpContainer>
+        <Head>
+          <Title>Your Mood</Title>
+          <IconWrapper onClick={handleClose}>
+            <CloseIcon fontSize="inherit" color="inherit" />
+          </IconWrapper>
+        </Head>
+        <ListContainer onScroll={handleScroll} ref={moodListRef}>
           {moods.map(({ name, id }) => (
             <MoodItem key={id} data-id={id}>
               {name}
             </MoodItem>
           ))}
-        </InnerContainer>
+        </ListContainer>
         <Button onClick={handleClick}>Done</Button>
-      </OuterContainer>
+      </PopUpContainer>
     </Wrapper>
   )
 
@@ -106,6 +113,10 @@ function MoodSelector({ moods, preselectedMoodId }: Props): JSX.Element {
     setCurrentMood(activeMood) // will call setState action from higher Order component
     console.log(activeMood)
   }
+
+  function handleClose() {
+    console.log('close window')
+  }
 }
 
 export default MoodSelector
@@ -117,8 +128,9 @@ const Wrapper = styled(Div100vh)`
   padding: 0 15px;
   background-color: transparent;
 `
-const OuterContainer = styled.div`
-  height: 350px;
+
+const PopUpContainer = styled.div`
+  height: 325px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -127,13 +139,32 @@ const OuterContainer = styled.div`
   border-radius: 36px;
   box-shadow: -2px 2px 16px var(--color-text-light);
 `
-const InnerContainer = styled.ul`
+const Head = styled.div`
+  width: 100%;
+  position: relative;
+  text-align: center;
+`
+
+const Title = styled.h3`
+  margin: 10px 0;
+`
+
+const IconWrapper = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  font-size: 40px;
+`
+
+const ListContainer = styled.ul`
   height: 150px;
   width: 300px;
   border: 1px solid var(--color-text-light);
   border-radius: 24px;
   overflow-y: scroll;
   overflow-x: hidden;
+  margin-top: 0;
+
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   list-style: none;
