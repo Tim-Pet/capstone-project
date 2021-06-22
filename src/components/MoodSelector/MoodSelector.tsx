@@ -8,6 +8,10 @@ import CloseIcon from '@material-ui/icons/Close'
 interface Props {
   moods: { name: string; id: number }[]
   preselectedMoodId: number
+  setShowMoodSelector: React.Dispatch<React.SetStateAction<boolean>>
+  setCurrentMood: React.Dispatch<
+    React.SetStateAction<{ name: string; id: number }>
+  >
 }
 
 interface Variables {
@@ -19,9 +23,12 @@ interface Variables {
   topLine: number
 }
 
-function MoodSelector({ moods, preselectedMoodId }: Props): JSX.Element {
-  const [currentMood, setCurrentMood] = useState(0) // will get taken out to higher order component
-
+function MoodSelector({
+  moods,
+  preselectedMoodId,
+  setShowMoodSelector,
+  setCurrentMood,
+}: Props): JSX.Element {
   const moodListRef = useRef<HTMLUListElement>(null)
   const variables = useRef<Variables | null>(null)
 
@@ -45,7 +52,7 @@ function MoodSelector({ moods, preselectedMoodId }: Props): JSX.Element {
     }
   }, [])
 
-  let activeMood: number
+  let activeMood: { name: string; id: number } | undefined
 
   return (
     <Wrapper>
@@ -106,33 +113,40 @@ function MoodSelector({ moods, preselectedMoodId }: Props): JSX.Element {
   function setActiveMood(moodItem: HTMLElement) {
     moodItem.style.color = 'blue'
     moodItem.style.transform = 'scale(1.2)'
-    activeMood = Number(moodItem.getAttribute('data-id'))
+    activeMood = moods.find(
+      mood => Number(moodItem.getAttribute('data-id')) === mood.id
+    )
   }
 
   function handleClick() {
-    setCurrentMood(activeMood) // will call setState action from higher Order component
-    console.log(activeMood)
+    if (activeMood) setCurrentMood(activeMood)
+    setShowMoodSelector(false)
   }
 
   function handleClose() {
-    console.log('close window')
+    setShowMoodSelector(false)
   }
 }
 
 export default MoodSelector
 const Wrapper = styled(Div100vh)`
   position: fixed;
+  top: 0;
   display: grid;
   place-items: center;
   width: 100vw;
   padding: 0 15px;
-  background-color: transparent;
+  backdrop-filter: blur(1px);
+  background-color: #00000030;
+  z-index: 100;
 `
 
 const PopUpContainer = styled.div`
   height: 325px;
   width: 100%;
+  padding: 10px 5px;
   display: flex;
+  background: var(--color-background);
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
