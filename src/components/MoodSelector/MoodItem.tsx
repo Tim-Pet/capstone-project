@@ -4,8 +4,8 @@ interface Props {
   children: any
 }
 
-const MoodItem = ({ children }: Props) => {
-  return <StyledItem>{children}</StyledItem>
+const MoodItem = ({ children, ...props }: Props) => {
+  return <StyledItem {...props}>{children}</StyledItem>
 }
 
 export default MoodItem

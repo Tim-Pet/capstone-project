@@ -1,12 +1,12 @@
-import styled from 'styled-components/macro'
-import { useState, useRef, useLayoutEffect } from 'react'
-import MoodItem from './MoodItem'
-import Button from '../common/Button/Button'
-import React from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Div100vh from 'react-div-100vh'
+import styled from 'styled-components/macro'
+import Button from '../common/Button/Button'
+import MoodItem from './MoodItem'
 
 interface Props {
-  moods?: string[]
+  moods: { name: string; id: number }[]
+  preselectedMoodId: number
 }
 
 interface Variables {
@@ -17,8 +17,9 @@ interface Variables {
   bottomLine: number
   topLine: number
 }
-const MoodSelector = (props: Props) => {
-  const [currentMood, setCurrentMood] = useState('Testitem 1')
+
+const MoodSelector = ({ moods, preselectedMoodId }: Props) => {
+  const [currentMood, setCurrentMood] = useState(0) // will get taken out to higher order component
 
   const moodListRef = useRef<HTMLUListElement>(null)
   const variables = useRef<Variables | null>(null)
@@ -28,8 +29,8 @@ const MoodSelector = (props: Props) => {
       const moodItems = [...moodListRef.current.children] as Array<HTMLElement>
       const moodItemCenter = moodItems[0].offsetHeight / 2
       const boxCenter = moodListRef.current.offsetHeight / 2
-      const bottomLine = boxCenter + 11 // 10px below center
-      const topLine = boxCenter - 21 // 20px above center --> 32px(2rem) in total
+      const bottomLine = boxCenter + 11 // 11px below center
+      const topLine = boxCenter - 21 // 21px above center --> 32px(2rem) in total
 
       variables.current = {
         moodList: moodListRef.current,
@@ -39,33 +40,33 @@ const MoodSelector = (props: Props) => {
         bottomLine,
         topLine,
       }
+      setInitialMood(preselectedMoodId)
     }
   }, [])
 
-  let activeMood = 'Testitem 1'
+  let activeMood: number
 
-  const moods = [
-    'Testitem 1',
-    'Testitem 2',
-    'Testitem 3',
-    'Testitem 4',
-    'Testitem 5',
-    'Testitem 6',
-    'Testitem 7',
-    'Testitem 8',
-    'Testitem 9',
-    'Testitem 10',
-  ]
   return (
     <TmpContainer>
       <InnerContainer onScroll={handleScroll} ref={moodListRef}>
-        {moods.map(mood => (
-          <MoodItem key={mood}>{mood}</MoodItem>
+        {moods.map(({ name, id }) => (
+          <MoodItem key={id} data-id={id}>
+            {name}
+          </MoodItem>
         ))}
       </InnerContainer>
       <Button onClick={handleClick}>Done</Button>
     </TmpContainer>
   )
+
+  function setInitialMood(initialMoodId: number) {
+    const initialMoodElement = variables.current!.moodItems.find(
+      moodItem => Number(moodItem.getAttribute('data-id')) === initialMoodId
+    )
+    if (initialMoodElement) {
+      setActiveMood(initialMoodElement)
+    }
+  }
 
   function handleScroll() {
     const {
@@ -96,11 +97,12 @@ const MoodSelector = (props: Props) => {
   function setActiveMood(moodItem: HTMLElement) {
     moodItem.style.color = 'blue'
     moodItem.style.transform = 'scale(1.2)'
-    activeMood = moodItem.innerText
+    activeMood = Number(moodItem.getAttribute('data-id'))
   }
 
   function handleClick() {
-    setCurrentMood(activeMood)
+    setCurrentMood(activeMood) // will call setState action from higher Order component
+    console.log(activeMood)
   }
 }
 

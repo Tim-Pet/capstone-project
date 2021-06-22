@@ -25,6 +25,49 @@ function App(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
+  const moods = [
+    {
+      name: 'Testitem 1',
+      id: 1,
+    },
+    {
+      name: 'Testitem 2',
+      id: 2,
+    },
+    {
+      name: 'Testitem 3',
+      id: 3,
+    },
+    {
+      name: 'Testitem 4',
+      id: 4,
+    },
+    {
+      name: 'Testitem 5',
+      id: 5,
+    },
+    {
+      name: 'Testitem 6',
+      id: 6,
+    },
+    {
+      name: 'Testitem 7',
+      id: 7,
+    },
+    {
+      name: 'Testitem 8',
+      id: 8,
+    },
+    {
+      name: 'Testitem 9',
+      id: 9,
+    },
+    {
+      name: 'Testitem 10',
+      id: 10,
+    },
+  ]
+
   return (
     <div>
       {/* {token ? (
@@ -46,7 +89,7 @@ function App(): JSX.Element {
       ) : (
         <Login />
       )} */}
-      <MoodSelector />
+      <MoodSelector moods={moods} preselectedMoodId={1} />
     </div>
   )
 
