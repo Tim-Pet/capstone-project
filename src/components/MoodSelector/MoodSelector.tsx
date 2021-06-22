@@ -132,6 +132,7 @@ export default MoodSelector
 const Wrapper = styled(Div100vh)`
   position: fixed;
   top: 0;
+  left: 0;
   display: grid;
   place-items: center;
   width: 100vw;
