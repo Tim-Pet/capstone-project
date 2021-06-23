@@ -36,8 +36,8 @@ function MoodSelector({
       const moodItems = [...moodListRef.current.children] as Array<HTMLElement>
       const moodItemCenter = moodItems[0].offsetHeight / 2
       const boxCenter = moodListRef.current.offsetHeight / 2
-      const bottomLine = boxCenter + 15 // 15px below center
-      const topLine = boxCenter - 25 // 25px above center --> 40px(2.5rem) in total to set an 'active area' for an entry
+      const bottomLine = boxCenter + 20 // 15px below center
+      const topLine = boxCenter - 20 // 25px above center --> 40px(2.5rem) in total to set an 'active area' for an entry
 
       variables.current = {
         moodList: moodListRef.current,
@@ -104,15 +104,17 @@ function MoodSelector({
       if (position > topLine && position < bottomLine) {
         setActiveMood(moodItem)
       } else {
-        moodItem.style.color = 'inherit'
-        moodItem.style.transform = 'scale(1)'
+        const moodItemContent = moodItem.children[0] as HTMLElement //Selects the content of the li and scales it to prevent layout shifts
+        moodItemContent.style.color = 'inherit'
+        moodItemContent.style.transform = 'scale(1)'
       }
     })
   }
 
   function setActiveMood(moodItem: HTMLElement) {
-    moodItem.style.color = 'blue'
-    moodItem.style.transform = 'scale(1.2)'
+    const moodItemContent = moodItem.children[0] as HTMLElement //Selects the content of the li and scales it to prevent layout shifts
+    moodItemContent.style.color = 'blue'
+    moodItemContent.style.transform = 'scale(1.3)'
     activeMood = moods.find(
       mood => Number(moodItem.getAttribute('data-id')) === mood.id
     )
@@ -179,7 +181,6 @@ const ListContainer = styled.ul`
   overflow-y: scroll;
   overflow-x: hidden;
   margin-top: 0;
-
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   list-style: none;

@@ -5,11 +5,18 @@ interface Props {
 }
 
 const MoodItem = ({ children, ...props }: Props) => {
-  return <StyledItem {...props}>{children}</StyledItem>
+  return (
+    <Wrapper {...props}>
+      <StyledItem>{children}</StyledItem>
+    </Wrapper>
+  )
 }
 
 export default MoodItem
 
-const StyledItem = styled.li`
+const Wrapper = styled.li`
+  height: 2.5rem;
+`
+const StyledItem = styled.p`
   margin: 0;
 `
