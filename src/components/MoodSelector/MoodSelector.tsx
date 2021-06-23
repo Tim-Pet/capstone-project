@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import Div100vh from 'react-div-100vh'
 import styled from 'styled-components/macro'
 import Button from '../common/Button/Button'
@@ -36,8 +36,8 @@ function MoodSelector({
       const moodItems = [...moodListRef.current.children] as Array<HTMLElement>
       const moodItemCenter = moodItems[0].offsetHeight / 2
       const boxCenter = moodListRef.current.offsetHeight / 2
-      const bottomLine = boxCenter + 15 // 11px below center
-      const topLine = boxCenter - 25 // 21px above center --> 40px(2.5rem) in total
+      const bottomLine = boxCenter + 15 // 15px below center
+      const topLine = boxCenter - 25 // 25px above center --> 40px(2.5rem) in total to set an 'active area' for an entry
 
       variables.current = {
         moodList: moodListRef.current,
@@ -49,6 +49,7 @@ function MoodSelector({
       }
       setInitialMood(preselectedMoodId)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   let activeMood: Mood | undefined
