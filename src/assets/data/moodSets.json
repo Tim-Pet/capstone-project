@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Peaceful",
+    "id": 0,
+    "options": {
+      "target_acusticness": 0.8
+    }
+  },
+  {
+    "name": "Happy",
+    "id": 1,
+    "options": {
+      "target_danceability": 0.8
+    }
+  },
+  {
+    "name": "Sad",
+    "id": 2,
+    "options": {
+      "min_acusticness": 0.5,
+      "target_acusticness": 0.7,
+      "max_energy": 0.5,
+      "target_energy": 0.3,
+      "min_instrumentalness": 0.3,
+      "target_instrumentalness": 0.5
+    }
+  },
+  {
+    "name": "Hopeful",
+    "id": 3,
+    "options": {
+      "min_danceability": 0.5
+    }
+  },
+  {
+    "name": "Sleepy",
+    "id": 4,
+    "options": {
+      "target_energy": 0.2
+    }
+  },
+  {
+    "name": "Touched",
+    "id": 5,
+    "options": {
+      "min_danceability": 0.5
+    }
+  },
+  {
+    "name": "Mellow",
+    "id": 6,
+    "options": {
+      "target_energy": 0.3,
+      "target_acusticness": 0.6
+    }
+  },
+  {
+    "name": "Lazy",
+    "id": 7,
+    "options": {
+      "target_danceability": 0.2
+    }
+  },
+  {
+    "name": "Stressed",
+    "id": 8,
+    "options": {
+      "target_tempo": 100
+    }
+  },
+  {
+    "name": "Relaxed",
+    "id": 9,
+    "options": {
+      "target_acusticness": 0.6,
+      "target_tempo": 80
+    }
+  }
+]

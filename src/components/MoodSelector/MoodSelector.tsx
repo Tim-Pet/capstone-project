@@ -4,14 +4,13 @@ import styled from 'styled-components/macro'
 import Button from '../common/Button/Button'
 import MoodItem from './MoodItem'
 import CloseIcon from '@material-ui/icons/Close'
+import { Mood } from '../../interfaces/SpotifyExtensions'
 
 interface Props {
-  moods: { name: string; id: number }[]
+  moods: Mood[]
   preselectedMoodId: number
   setShowMoodSelector: React.Dispatch<React.SetStateAction<boolean>>
-  setCurrentMood: React.Dispatch<
-    React.SetStateAction<{ name: string; id: number }>
-  >
+  setCurrentMood: React.Dispatch<React.SetStateAction<Mood>>
 }
 
 interface Variables {
@@ -52,7 +51,7 @@ function MoodSelector({
     }
   }, [])
 
-  let activeMood: { name: string; id: number } | undefined
+  let activeMood: Mood | undefined
 
   return (
     <Wrapper>

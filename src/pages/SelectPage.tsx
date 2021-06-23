@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
 import Button from '../components/common/Button/Button'
-import Slider from '../components/common/Slider/Slider'
 import Header from '../components/Header/Header'
 import MoodShowcase from '../components/MoodSelector/MoodShowcase'
+import moodSets from '../assets/data/moodSets.json'
+import { Mood } from '../interfaces/SpotifyExtensions'
 
 interface SelectPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
@@ -16,13 +17,21 @@ interface SelectPageProps {
 }
 
 const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
+  const baseSeedObject: SpotifyApi.RecommendationsOptionsObject = {
+    limit: 20,
+    seed_genres: 'classical',
+  }
   const [
     seedObject,
     setSeedObject,
-  ] = useState<SpotifyApi.RecommendationsOptionsObject>({
-    limit: 20,
-    seed_genres: 'classical',
-  })
+  ] = useState<SpotifyApi.RecommendationsOptionsObject>(baseSeedObject)
+
+  const moods: Mood[] = moodSets
+  const [currentMood, setCurrentMood] = useState(moods[0])
+
+  useEffect(() => {
+    adjustSeedObject()
+  }, [currentMood])
 
   const history = useHistory()
 
@@ -30,7 +39,11 @@ const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
     <Container>
       <Header withBack={false}>Choose your kind</Header>
       <StyledForm onSubmit={handleSubmit}>
-        <MoodShowcase />
+        <MoodShowcase
+          moods={moods}
+          setCurrentMood={setCurrentMood}
+          currentMood={currentMood}
+        />
 
         <ButtonWrapper>
           <Button>Get your Playlist</Button>
@@ -38,10 +51,11 @@ const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
       </StyledForm>
     </Container>
   )
-  function handleLivenessChange(value: number): void {
-    setSeedObject({ ...seedObject, target_liveness: value })
-  }
 
+  function adjustSeedObject() {
+    const { options } = currentMood
+    setSeedObject({ ...baseSeedObject, ...options })
+  }
   function handleSubmit(event: React.FormEvent<any>): void {
     event.preventDefault()
     spotify.getRecommendations(
