@@ -28,10 +28,9 @@ const SliderComponent = ({
         step={step}
         onChange={(
           // eslint-disable-next-line @typescript-eslint/ban-types
-          event: React.ChangeEvent<{}>, //Disabled due to materialUi accepted types
+          event: React.ChangeEvent<{}>, //Linter disabled due to materialUi accepted types (<{}> needed for materialUi)
           value: number | number[]
         ): void => onChange(value as number)}
-        // aria-labelledby="range-slider"
       />
     </label>
   )
@@ -58,9 +57,8 @@ const StyledSlider = styled(Slider)`
     color: var(--color-text);
   }
 `
-/**
- * To Add slider values to the seed element use this function:
- * function handleLivenessChange(value: number): void {
-    setSeedObject({ ...seedObject, target_liveness: value })
-  }
- */
+
+// To Add slider values to the seed element use this function:
+// function handleLivenessChange(value: number): void {
+//  setSeedObject({ ...seedObject, target_liveness: value })
+// }
