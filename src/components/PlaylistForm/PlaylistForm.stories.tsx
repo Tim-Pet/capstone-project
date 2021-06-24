@@ -11,8 +11,8 @@ interface PlaylistFormProps {
   titleLabel: string
   textLabel: string
   buttonText: string
-  serverError: Boolean
-  onSubmit: Function
+  serverError: boolean
+  onSubmit: (inputStates: { title: string; description: string }) => void
 }
 
 const Template: Story<PlaylistFormProps> = args => <PlaylistForm {...args} />

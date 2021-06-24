@@ -6,8 +6,8 @@ interface PlaylistFormProps {
   titleLabel: string
   textLabel: string
   buttonText: string
-  onSubmit: Function
-  serverError: Boolean
+  onSubmit: (inputStates: { title: string; description: string }) => void
+  serverError: boolean
 }
 
 function PlaylistForm({
@@ -16,7 +16,7 @@ function PlaylistForm({
   buttonText,
   onSubmit,
   serverError,
-}: PlaylistFormProps) {
+}: PlaylistFormProps): JSX.Element {
   const [isDisabled, setIsDisabled] = useState(true)
   const [inputStates, setInputStates] = useState({ title: '', description: '' })
   useEffect(() => {
@@ -71,7 +71,7 @@ function PlaylistForm({
     setInputStates({ ...inputStates, [name]: value })
   }
 
-  function handleSubmit(event: React.FormEvent<{}>) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
     if (isDisabled) return //early out for Safari
     onSubmit(inputStates)

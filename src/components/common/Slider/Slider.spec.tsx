@@ -1,7 +1,16 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
 import Slider from './Slider'
 
-jest.mock('@material-ui/core/Slider', () => (props: any) => {
+interface SliderProps {
+  startValue: number
+  min: number
+  max: number
+  step: number
+  onChange: (value: string) => void
+}
+
+jest.mock('@material-ui/core/Slider', () => (props: SliderProps) => {
   const { startValue, min, max, step, onChange } = props
   return (
     <input
@@ -31,7 +40,7 @@ describe('Slider', (): void => {
     expect(slider).toBeInTheDocument()
   })
   it('Calls onChange', (): void => {
-    const handleChange: Function = jest.fn()
+    const handleChange: (value: number) => void = jest.fn()
     render(
       <Slider
         title={'testSlider'}

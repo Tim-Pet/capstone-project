@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
+import moodSets from '../assets/data/moodSets.json'
 import Button from '../components/common/Button/Button'
 import Header from '../components/Header/Header'
 import MoodShowcase from '../components/MoodSelector/MoodShowcase'
-import moodSets from '../assets/data/moodSets.json'
 import { Mood } from '../interfaces/SpotifyExtensions'
 
 interface SelectPageProps {
@@ -56,7 +56,7 @@ const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
     const { options } = currentMood
     setSeedObject({ ...baseSeedObject, ...options })
   }
-  function handleSubmit(event: React.FormEvent<any>): void {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
     spotify.getRecommendations(
       seedObject,

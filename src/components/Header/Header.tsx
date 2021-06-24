@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Button from '../common/Button/Button'
 
 interface HeaderProps {
-  withBack?: Boolean
+  withBack?: boolean
   children: string
 }
 

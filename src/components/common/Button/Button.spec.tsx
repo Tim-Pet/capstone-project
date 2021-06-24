@@ -11,7 +11,7 @@ describe('Button', (): void => {
   })
 
   it('calls `onClick` upon click', (): void => {
-    const handleClick: Function = jest.fn()
+    const handleClick: () => void = jest.fn()
     render(<Button onClick={handleClick}>Click me</Button>)
 
     const button: HTMLElement = screen.getByRole('button', { name: 'Click me' })

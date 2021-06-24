@@ -15,7 +15,7 @@ const CreatePlaylistPage = ({
   spotify,
   userId,
   tracks,
-}: CreatePlaylistPageProps) => {
+}: CreatePlaylistPageProps): JSX.Element => {
   const [serverError, setServerError] = useState(false)
 
   return (
@@ -62,10 +62,7 @@ const CreatePlaylistPage = ({
     )
   }
 
-  function handleError(
-    msg: string = 'Error: ',
-    err: SpotifyWebApi.ErrorObject
-  ) {
+  function handleError(msg = 'Error: ', err: SpotifyWebApi.ErrorObject) {
     console.log(msg, err)
     setServerError(true)
     setTimeout(() => setServerError(false), 5000)

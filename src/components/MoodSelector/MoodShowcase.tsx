@@ -20,7 +20,9 @@ function MoodShowcase({
   return (
     <div>
       <MoodLabel>Mood: </MoodLabel>
-      <StyledButton onClick={handleClick}>{currentMood.name}</StyledButton>
+      <ButtonWrapper>
+        <StyledButton onClick={handleClick}>{currentMood.name}</StyledButton>
+      </ButtonWrapper>
       {showMoodSelector && (
         <MoodSelector
           moods={moods}
@@ -31,7 +33,7 @@ function MoodShowcase({
       )}
     </div>
   )
-  function handleClick(event: any) {
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     setShowMoodSelector(true)
   }
@@ -45,6 +47,10 @@ const MoodLabel = styled.p`
   letter-spacing: 0.125rem;
   line-height: 2rem;
   margin: 0 0 10px 0;
+`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `
 const StyledButton = styled(Button)`
   background: transparent;
