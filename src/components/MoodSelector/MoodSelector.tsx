@@ -113,8 +113,8 @@ function MoodSelector({
 
   function setActiveMood(moodItem: HTMLElement) {
     const moodItemContent = moodItem.children[0] as HTMLElement //Selects the content of the li and scales it to prevent layout shifts
-    moodItemContent.style.color = 'blue'
-    moodItemContent.style.transform = 'scale(1.3)'
+    moodItemContent.style.color = 'var(--color-accent)'
+    moodItemContent.style.transform = 'scale(1.2)'
     activeMood = moods.find(
       mood => Number(moodItem.getAttribute('data-id')) === mood.id
     )
