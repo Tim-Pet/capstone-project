@@ -31,7 +31,7 @@ function MoodShowcase({
       )}
     </div>
   )
-  function handleClick(event: any) {
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     setShowMoodSelector(true)
   }

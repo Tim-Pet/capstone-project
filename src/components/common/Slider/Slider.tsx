@@ -7,7 +7,7 @@ interface SliderProps {
   min: number
   max: number
   step: number
-  onChange: Function
+  onChange: (value: number) => void
 }
 
 const SliderComponent = ({
@@ -17,7 +17,7 @@ const SliderComponent = ({
   max,
   step,
   onChange,
-}: SliderProps) => {
+}: SliderProps): JSX.Element => {
   return (
     <label>
       <CriteriaName>{title}</CriteriaName>
@@ -26,9 +26,11 @@ const SliderComponent = ({
         min={min}
         max={max}
         step={step}
-        onChange={(event: React.ChangeEvent<{}>, value: number | number[]) =>
-          onChange(value as number)
-        }
+        onChange={(
+          // eslint-disable-next-line @typescript-eslint/ban-types
+          event: React.ChangeEvent<{}>, //Disabled due to materialUi accepted types
+          value: number | number[]
+        ): void => onChange(value as number)}
         // aria-labelledby="range-slider"
       />
     </label>
@@ -56,3 +58,9 @@ const StyledSlider = styled(Slider)`
     color: var(--color-text);
   }
 `
+/**
+ * To Add slider values to the seed element use this function:
+ * function handleLivenessChange(value: number): void {
+    setSeedObject({ ...seedObject, target_liveness: value })
+  }
+ */

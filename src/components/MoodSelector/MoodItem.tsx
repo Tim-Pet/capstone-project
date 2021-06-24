@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
 
 interface Props {
-  children: any
+  children: React.ReactNode
 }
 
-const MoodItem = ({ children, ...props }: Props) => {
+const MoodItem = ({ children, ...props }: Props): JSX.Element => {
   return (
     <Wrapper {...props}>
       <StyledItem>{children}</StyledItem>

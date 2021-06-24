@@ -13,7 +13,7 @@ interface SliderProps {
   min: number
   max: number
   step: number
-  onChange: Function
+  onChange: (value: number) => void
 }
 
 const Template: Story<SliderProps> = args => <Slider {...args} />

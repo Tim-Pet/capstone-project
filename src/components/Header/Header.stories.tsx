@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 interface HeaderProps {
-  withBack: Boolean
+  withBack: boolean
   children: string
 }
 

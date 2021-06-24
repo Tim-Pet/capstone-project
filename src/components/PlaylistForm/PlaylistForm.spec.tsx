@@ -10,6 +10,7 @@ describe('PlaylistForm', (): void => {
         textLabel={'Text'}
         buttonText={'Click me'}
         onSubmit={jest.fn()}
+        serverError={false}
       />
     )
     const inputLabel: HTMLElement = screen.getByRole('textbox', {
@@ -32,6 +33,7 @@ describe('PlaylistForm', (): void => {
         textLabel={'Text'}
         buttonText={'Click me'}
         onSubmit={handleSubmit}
+        serverError={false}
       />
     )
     const button: HTMLElement = screen.getByRole('button', { name: 'Click me' })
@@ -58,6 +60,7 @@ describe('PlaylistForm', (): void => {
         textLabel={'Text'}
         buttonText={'Click me'}
         onSubmit={handleSubmit}
+        serverError={false}
       />
     )
     const button: HTMLElement = screen.getByRole('button', { name: 'Click me' })

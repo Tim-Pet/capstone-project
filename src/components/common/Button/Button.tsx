@@ -2,15 +2,19 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 interface ButtonProps {
-  children: any
+  children: React.ReactNode
   component?: string | undefined
   href?: string
   as?: React.ElementType
-  onClick?: Function
-  disabled?: Boolean
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  disabled?: boolean
 }
 
-const Button = ({ children, component = 'button', ...props }: ButtonProps) => {
+const Button = ({
+  children,
+  component = 'button',
+  ...props
+}: ButtonProps): JSX.Element => {
   return (
     <StyledButton as={component} {...props}>
       {children}
