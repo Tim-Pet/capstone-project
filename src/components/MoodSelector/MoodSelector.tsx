@@ -1,10 +1,10 @@
+import CloseIcon from '@material-ui/icons/Close'
 import { useLayoutEffect, useRef } from 'react'
 import Div100vh from 'react-div-100vh'
 import styled from 'styled-components/macro'
+import { Mood } from '../../interfaces/SpotifyExtensions'
 import Button from '../common/Button/Button'
 import MoodItem from './MoodItem'
-import CloseIcon from '@material-ui/icons/Close'
-import { Mood } from '../../interfaces/SpotifyExtensions'
 
 interface Props {
   moods: Mood[]
@@ -132,34 +132,34 @@ function MoodSelector({
 
 export default MoodSelector
 const Wrapper = styled(Div100vh)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: grid;
-  place-items: center;
-  width: 100vw;
-  padding: 0 15px;
   backdrop-filter: blur(1px);
   background-color: #00000030;
+  display: grid;
+  left: 0;
+  padding: 0 15px;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
   z-index: 100;
 `
 
 const PopUpContainer = styled.div`
-  height: 325px;
-  width: 100%;
-  padding: 10px 5px;
-  display: flex;
-  background: var(--color-background);
-  flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  background: var(--color-background);
   border-radius: 36px;
   box-shadow: -2px 2px 16px var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  height: 325px;
+  justify-content: space-around;
+  padding: 10px 5px;
+  width: 100%;
 `
 const Head = styled.div`
-  width: 100%;
   position: relative;
   text-align: center;
+  width: 100%;
 `
 
 const Title = styled.h3`
@@ -167,26 +167,26 @@ const Title = styled.h3`
 `
 
 const IconWrapper = styled.div`
+  font-size: 40px;
   position: absolute;
   right: 20px;
   top: 5px;
-  font-size: 40px;
 `
 
 const ListContainer = styled.ul`
-  height: 150px;
-  width: 300px;
-  border: 1px solid var(--color-text-light);
-  border-radius: 24px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin-top: 0;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  list-style: none;
-  text-align: center;
-  padding: 2.5rem 0;
+  border-radius: 24px;
+  border: 1px solid var(--color-text-light);
+  height: 150px;
   line-height: 2.5rem;
+  list-style: none;
+  margin-top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 2.5rem 0;
+  scrollbar-width: none;
+  text-align: center;
+  width: 300px;
   ::-webkit-scrollbar {
     display: none;
   }

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import MoodSelector from './MoodSelector'
 import styled from 'styled-components/macro'
-import Button from '../common/Button/Button'
 import { Mood } from '../../interfaces/SpotifyExtensions'
+import Button from '../common/Button/Button'
+import MoodSelector from './MoodSelector'
 
 interface Props {
   moods: Mood[]
@@ -48,9 +48,9 @@ const MoodLabel = styled.p`
 `
 const StyledButton = styled(Button)`
   background: transparent;
-  color: var(--color-text);
   box-shadow: inset 1px 1px 8px #00000040;
-  width: 300px;
-  padding: 10px 0;
+  color: var(--color-text);
   font-size: 1.25rem;
+  padding: 10px 0;
+  width: 300px;
 `
