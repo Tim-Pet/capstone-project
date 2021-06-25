@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "downlevelIteration": true
   },
-  "include": ["src", "../stories"]
+  "include": ["client/src", "../stories"]
 }
