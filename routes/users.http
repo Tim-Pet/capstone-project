@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:4000
+@validUserId = testuser1
+
+### GET all users
+GET {{baseUrl}}/api/users
+
+### GET testuser with name testuser1
+GET {{baseUrl}}/api/users/{{validUserId}}
+
+### PATCH a user
+PATCH {{baseUrl}}/api/users/{{validUserId}}
+Content-Type: application/json
+
+{
+  "playlists": [
+    {
+      "name": "Testplaylist 1",
+      "tracks": [
+        {
+          "id": "0",
+          "name": "Castle of glass",
+          "artist": "Linkin Park"
+        }
+      ],
+      "id": "0"
+    },
+    {
+      "name": "Testplaylist 2",
+      "tracks": [
+        {
+          "id": "1",
+          "name": "One more light",
+          "artist": "Linkin Park"
+        }
+      ],
+      "id": "1"
+    }
+  ]
+}
