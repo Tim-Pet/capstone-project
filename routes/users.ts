@@ -6,14 +6,18 @@ router.get('/', async (req, res) => {
   res.json(await User.find())
 })
 
-router.get('/:name', async (req, res, next) => {
-  const { name } = req.params
-  res.json(await User.findOne({ name: name }))
+router.get('/:id', async (req, res, next) => {
+  const { id } = req.params
+  res.json(await User.findById(id))
 })
 
-router.patch('/:name', async (req, res) => {
-  const { name } = req.params
-  res.json(await User.findOneAndUpdate({ name: name }, req.body, { new: true }))
+router.patch('/:id', async (req, res) => {
+  const { id } = req.params
+  res.json(await User.findByIdAndUpdate(id, req.body, { new: true }))
+})
+
+router.post('/', async (req, res) => {
+  res.status(201).json(await User.create(req.body))
 })
 
 module.exports = router

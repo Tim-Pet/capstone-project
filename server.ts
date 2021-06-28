@@ -1,5 +1,4 @@
 import express from 'express'
-import path from 'path'
 import mongoose from 'mongoose'
 
 require('dotenv').config()
@@ -19,6 +18,18 @@ mongoose
 // express likes to call the server "app"
 const app = express()
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  res.header(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, OPTIONS, PATCH'
+  )
+  next()
+})
 app.use('/', express.json()) // (req, res, next) => {...}
 app.use('/api/users', require('./routes/users'))
 // app.use(express.static('client/build'))

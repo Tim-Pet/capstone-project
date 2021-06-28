@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:4000
-@validUserId = testuser1
+@validUserId = timpet3
 
 ### GET all users
 GET {{baseUrl}}/api/users
@@ -14,26 +14,36 @@ Content-Type: application/json
 {
   "playlists": [
     {
-      "name": "Testplaylist 1",
+      "id": "0",
+      "description": "jkndkewjnd",
+      "title": "Testplaylist 1",
       "tracks": [
         {
           "id": "0",
           "name": "Castle of glass",
           "artist": "Linkin Park"
         }
-      ],
-      "id": "0"
+      ]
     },
     {
-      "name": "Testplaylist 2",
+      "description": "jkndkewjnd",
+      "title": "Testplaylist 2",
+      "id": "1",
       "tracks": [
         {
           "id": "1",
           "name": "One more light",
           "artist": "Linkin Park"
         }
-      ],
-      "id": "1"
+      ]
     }
   ]
+}
+### Create a new user
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "_id": "timpet4",
+  "name": "timpeFour"
 }
