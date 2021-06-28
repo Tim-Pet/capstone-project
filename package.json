@@ -2,11 +2,11 @@
   "name": "recofy-server",
   "version": "1.0.0",
   "description": "server for recofy",
-  "main": "index.tsx",
+  "main": "server.ts",
   "scripts": {
     "dev": "npm-run-all --parallel dev:client dev:server",
     "dev:client": "cd client && npm start",
-    "dev:server": "nodemon server.js",
+    "dev:server": "nodemon server.ts",
     "test": "cd client && npm test",
     "storybook": "cd client && npm run storybook",
     "build": "cd client && npm run build",
@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/Tim-Pet/capstone-project#readme",
   "devDependencies": {
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.5",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "eslint": "^7.29.0",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
     "ts-node": "^10.0.0",
@@ -30,6 +35,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.14",
