@@ -14,8 +14,6 @@ function RecommendationPage({
   tracks,
   user,
 }: RecommendationPageProps): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [showsRecommendations, setshowsRecommendations] = useState(false)
   const [activeSwitch, setActiveSwitch] = useState('left')
   const history = useHistory()
 
@@ -30,13 +28,14 @@ function RecommendationPage({
         onClickLeft={handleClickLeft}
         onClickRight={handleClickRight}
       >
-        {showsRecommendations ? 'Your Songs' : 'Your Playlists'}
+        {activeSwitch === 'left' ? 'Your Songs' : 'Your Playlists'}
       </Header>
       {activeSwitch === 'left' ? (
         <SongList tracks={tracks} />
       ) : (
         <History user={user} />
       )}
+
       <ButtonWrapper>
         <Button onClick={handleClick}>Create Playlist</Button>
       </ButtonWrapper>
