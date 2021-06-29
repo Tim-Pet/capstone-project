@@ -36,7 +36,12 @@ function App(): JSX.Element {
             <RecommendationPage tracks={tracks} user={user} />
           </Route>
           <Route path="/create">
-            <CreatePlaylistPage spotify={spotify} user={user} tracks={tracks} />
+            <CreatePlaylistPage
+              spotify={spotify}
+              user={user}
+              setUser={setUser}
+              tracks={tracks}
+            />
           </Route>
         </Switch>
       ) : (

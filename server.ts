@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+const bodyParser = require('body-parser')
 
 require('dotenv').config()
 
@@ -30,6 +31,9 @@ app.use(function (req, res, next) {
   )
   next()
 })
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+
 app.use('/', express.json()) // (req, res, next) => {...}
 app.use('/api/users', require('./routes/users'))
 // app.use(express.static('client/build'))

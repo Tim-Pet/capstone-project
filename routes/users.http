@@ -7,7 +7,8 @@ GET {{baseUrl}}/api/users
 ### GET testuser with name testuser1
 GET {{baseUrl}}/api/users/{{validUserId}}
 
-### PATCH a user
+### PATCH a user 
+//TODO Adjust testplaylistobject
 PATCH {{baseUrl}}/api/users/{{validUserId}}
 Content-Type: application/json
 
@@ -21,7 +22,7 @@ Content-Type: application/json
         {
           "id": "0",
           "name": "Castle of glass",
-          "artist": "Linkin Park"
+          "artists": "Linkin Park"
         }
       ]
     },
@@ -33,7 +34,7 @@ Content-Type: application/json
         {
           "id": "1",
           "name": "One more light",
-          "artist": "Linkin Park"
+          "artists": "Linkin Park"
         }
       ]
     }

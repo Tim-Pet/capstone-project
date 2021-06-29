@@ -15,7 +15,7 @@ const History = ({ user }: HistoryProps) => {
   return (
     <div>
       {playlists?.map(playlist => (
-        <p>{playlist.name}</p>
+        <p>{playlist.title}</p>
       ))}
     </div>
   )

@@ -18,7 +18,7 @@ export async function createUser(id: string, name: string) {
   })
 }
 
-export async function updateUser(id: string, playlists: any[]) {
+export async function patchUser(id: string, playlists: any[]) {
   return await axios({
     method: 'patch',
     url: `${baseUrl}/api/users/${id}`,

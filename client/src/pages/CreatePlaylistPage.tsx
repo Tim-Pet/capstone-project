@@ -4,18 +4,20 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
 import PlaylistForm from '../components/PlaylistForm/PlaylistForm'
 import Header from '../components/Header/Header'
-import { updateUser } from '../helper/backendRequests'
+import { getUser, patchUser } from '../helper/backendRequests'
 
 interface CreatePlaylistPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
   user: any
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
+  setUser: React.Dispatch<React.SetStateAction<null>>
 }
 
 const CreatePlaylistPage = ({
   spotify,
   user,
   tracks,
+  setUser,
 }: CreatePlaylistPageProps): JSX.Element => {
   const [serverError, setServerError] = useState(false)
 
@@ -39,8 +41,13 @@ const CreatePlaylistPage = ({
     description: string
   }): void {
     const trackUris = tracks?.map(({ uri }) => uri) as string[]
+
     createSpotifyPlaylist(title, description).then(resp => {
-      createBackendPlaylist(resp!.id, title, description, tracks!)
+      createBackendPlaylist(resp!.id, title, description, tracks!).then(() =>
+        getUser(user._id).then(({ data }) => {
+          setUser(data)
+        })
+      )
       addTracksToSpotifyPlaylist(resp!.id, trackUris)
     })
   }
@@ -69,7 +76,7 @@ const CreatePlaylistPage = ({
       description: description,
       tracks: tracks,
     })
-    updateUser(user._id, playlists)
+    return patchUser(user._id, playlists)
   }
 
   function addTracksToSpotifyPlaylist(id: string, trackUris: string[]) {

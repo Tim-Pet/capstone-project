@@ -10,7 +10,6 @@ interface RecommendationPageProps {
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
   user: any
 }
-
 function RecommendationPage({
   tracks,
   user,
@@ -18,6 +17,7 @@ function RecommendationPage({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showsRecommendations, setshowsRecommendations] = useState(false)
   const history = useHistory()
+
   return (
     <Container>
       <Header withBack={true}>Your Songs</Header>
