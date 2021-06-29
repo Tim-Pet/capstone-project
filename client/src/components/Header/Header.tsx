@@ -2,13 +2,29 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import Button from '../common/Button/Button'
+import { useState } from 'react'
 
 interface HeaderProps {
   withBack?: boolean
   children: string
+  withSwitch?: boolean
+  onClickLeft?: any
+  onClickRight?: any
+  leftText?: string
+  rightText?: string
+  activeSwitch?: string
 }
 
-function Header({ withBack = false, children }: HeaderProps): JSX.Element {
+function Header({
+  withBack = false,
+  children,
+  withSwitch = false,
+  onClickLeft,
+  onClickRight,
+  leftText,
+  rightText,
+  activeSwitch,
+}: HeaderProps): JSX.Element {
   const { goBack } = useHistory()
 
   return (
@@ -19,6 +35,22 @@ function Header({ withBack = false, children }: HeaderProps): JSX.Element {
         </StrippedButton>
       )}
       <StyledTitle>{children}</StyledTitle>
+      {withSwitch && (
+        <SwitchContainer>
+          <SwitchLeft
+            onClick={onClickLeft}
+            isActive={activeSwitch === 'left' ? true : false}
+          >
+            {leftText}
+          </SwitchLeft>
+          <SwitchRight
+            onClick={onClickRight}
+            isActive={activeSwitch === 'right' ? true : false}
+          >
+            {rightText}
+          </SwitchRight>
+        </SwitchContainer>
+      )}
     </Container>
   )
 }
@@ -27,7 +59,8 @@ export default Header
 
 const Container = styled.header`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 
   &::after {
@@ -60,4 +93,36 @@ const StyledTitle = styled.h2`
   margin-top: 32px;
   position: relative;
   width: fit-content;
+`
+
+const SwitchContainer = styled.div`
+  width: 200px;
+  display: flex;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 10px;
+`
+const SwitchLeft = styled(Button)`
+  background: ${({ isActive }) =>
+    isActive ? 'var(--color-accent)' : 'lightgrey'};
+  color: ${({ isActive }) => (isActive ? 'white' : 'var(--color-text)')};
+  box-shadow: ${({ isActive }) =>
+    isActive ? 'inset -5px 0px 49px -16px rgba(58, 58, 58, 0.25)' : ''};
+  padding: 10px 0;
+  margin: 0;
+  width: 50%;
+  border-radius: 0;
+  border-right: 1px solid var(--color-text-light);
+`
+const SwitchRight = styled(Button)`
+  background: ${({ isActive }) =>
+    isActive ? 'var(--color-accent)' : 'lightgrey'};
+  color: ${({ isActive }) => (isActive ? 'white' : 'var(--color-text)')};
+  box-shadow: ${({ isActive }) =>
+    isActive ? 'inset 5px 0px 49px -16px rgba(58, 58, 58, 0.25)' : ''};
+  padding: 10px 0;
+  margin: 0;
+  width: 50%;
+  border-radius: 0;
+  border-left: 1px solid var(--color-text-light);
 `
