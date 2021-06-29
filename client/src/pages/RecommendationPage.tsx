@@ -1,23 +1,31 @@
+import { useState } from 'react'
 import Div100vh from 'react-div-100vh'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from '../components/common/Button/Button'
 import Header from '../components/Header/Header'
-import SongEntry from '../components/SongEntry/SongEntry'
-interface Props {
+import SongList from '../components/SongList/SongList'
+import History from '../components/History/History'
+interface RecommendationPageProps {
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
+  user: any
 }
 
-function RecommendationPage({ tracks }: Props): JSX.Element {
+function RecommendationPage({
+  tracks,
+  user,
+}: RecommendationPageProps): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showsRecommendations, setshowsRecommendations] = useState(false)
   const history = useHistory()
   return (
     <Container>
       <Header withBack={true}>Your Songs</Header>
-      <SongList>
-        {tracks?.map(({ id, name, artists }) => (
-          <SongEntry key={id} name={name} artists={artists} />
-        ))}
-      </SongList>
+      {showsRecommendations ? (
+        <SongList tracks={tracks} />
+      ) : (
+        <History user={user} />
+      )}
       <ButtonWrapper>
         <Button onClick={handleClick}>Create Playlist</Button>
       </ButtonWrapper>
@@ -33,11 +41,6 @@ const Container = styled(Div100vh)`
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: 12px 0;
-`
-const SongList = styled.div`
-  margin: 0;
-  overflow-y: auto;
-  padding: 10px 24px 0 24px;
 `
 
 const ButtonWrapper = styled.div`

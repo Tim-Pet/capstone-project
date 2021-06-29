@@ -1,7 +1,7 @@
 import Div100vh from 'react-div-100vh'
 import styled from 'styled-components/macro'
-import heroImg from '../assets/images/Login-hero.jpg'
-import Button from './common/Button/Button'
+import heroImg from '../../assets/images/Login-hero.jpg'
+import Button from '../common/Button/Button'
 
 function Login(): JSX.Element {
   const authEndpoint = 'https://accounts.spotify.com/authorize'
