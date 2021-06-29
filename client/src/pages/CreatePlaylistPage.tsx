@@ -4,16 +4,17 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components/macro'
 import PlaylistForm from '../components/PlaylistForm/PlaylistForm'
 import Header from '../components/Header/Header'
+import { updateUser } from '../helper/backendRequests'
 
 interface CreatePlaylistPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
-  userId: string
+  user: any
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
 }
 
 const CreatePlaylistPage = ({
   spotify,
-  userId,
+  user,
   tracks,
 }: CreatePlaylistPageProps): JSX.Element => {
   const [serverError, setServerError] = useState(false)
@@ -38,28 +39,45 @@ const CreatePlaylistPage = ({
     description: string
   }): void {
     const trackUris = tracks?.map(({ uri }) => uri) as string[]
-    spotify.createPlaylist(
-      userId,
-      { name: title, description: description },
-      (err, resp) => {
-        if (err !== null) {
-          handleError('Error while creating Playlist:', err)
-        } else {
-          spotify.addTracksToPlaylist(
-            resp.id,
-            trackUris,
-            undefined,
-            (err, resp) => {
-              if (err !== null) {
-                handleError('Error while adding Tracks to the playlist:', err)
-              } else {
-                console.log(resp)
-              }
-            }
-          )
-        }
-      }
-    )
+    createSpotifyPlaylist(title, description).then(resp => {
+      createBackendPlaylist(resp!.id, title, description, tracks!)
+      addTracksToSpotifyPlaylist(resp!.id, trackUris)
+    })
+  }
+
+  function createSpotifyPlaylist(title: string, description: string) {
+    return spotify
+      .createPlaylist(user._id, { name: title, description: description })
+      .catch(err => handleError('Error while creating Playlist:', err))
+  }
+
+  function createBackendPlaylist(
+    id: string,
+    title: string,
+    description: string,
+    tracksRaw: SpotifyApi.TrackObjectSimplified[]
+  ) {
+    const tracks = tracksRaw.map(({ id, artists, name }) => ({
+      _id: id,
+      name,
+      artists,
+    }))
+    const playlists = [...user.playlists]
+    playlists.push({
+      _id: id,
+      title: title,
+      description: description,
+      tracks: tracks,
+    })
+    updateUser(user._id, playlists)
+  }
+
+  function addTracksToSpotifyPlaylist(id: string, trackUris: string[]) {
+    spotify
+      .addTracksToPlaylist(id, trackUris)
+      .catch(err =>
+        handleError('Error while adding Tracks to the playlist:', err)
+      )
   }
 
   function handleError(msg = 'Error: ', err: SpotifyWebApi.ErrorObject) {
