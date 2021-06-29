@@ -20,7 +20,9 @@ function RecommendationPage({
 
   return (
     <Container>
-      <Header withBack={true}>Your Songs</Header>
+      <Header withBack={true}>
+        {showsRecommendations ? 'Your Songs' : 'Your Playlists'}
+      </Header>
       {showsRecommendations ? (
         <SongList tracks={tracks} />
       ) : (
