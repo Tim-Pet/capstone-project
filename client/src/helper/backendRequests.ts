@@ -1,15 +1,14 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:4000'
 
 export async function getUser(id: string) {
-  return await axios.get(`${baseUrl}/api/users/${id}`)
+  return await axios.get(`/api/users/${id}`)
 }
 
 //inhalte mitgeben
 export async function createUser(id: string, name: string) {
   return await axios({
     method: 'post',
-    url: `${baseUrl}/api/users`,
+    url: `/api/users`,
     headers: {},
     data: {
       _id: id,
@@ -21,7 +20,7 @@ export async function createUser(id: string, name: string) {
 export async function patchUser(id: string, playlists: any[]) {
   return await axios({
     method: 'patch',
-    url: `${baseUrl}/api/users/${id}`,
+    url: `/api/users/${id}`,
     headers: {},
     data: { playlists: playlists },
   })

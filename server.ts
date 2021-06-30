@@ -1,5 +1,6 @@
-import express from 'express'
-import mongoose from 'mongoose'
+const express = require('express')
+const mongoose = require('mongoose')
+const path = require('path')
 const bodyParser = require('body-parser')
 
 require('dotenv').config()
@@ -10,16 +11,17 @@ mongoose
   .connect(MONGODB_URL as string, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => {
     console.log('Connected to MongoDB')
   })
   .catch(console.error)
 
-// express likes to call the server "app"
+//express likes to call the server "app"
 const app = express()
 
-app.use(function (req, res, next) {
+app.use(function (req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   res.header(
     'Access-Control-Allow-Headers',
@@ -36,12 +38,13 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 app.use('/', express.json()) // (req, res, next) => {...}
 app.use('/api/users', require('./routes/users'))
-// app.use(express.static('client/build'))
+
+app.use(express.static(path.join(__dirname, './client/build')))
 
 // redirect to index.html
-// app.use('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/build/index.html'))
-// })
+app.get('*', (req: any, res: any) => {
+  res.sendFile(path.join(__dirname, './client/build'))
+})
 
 // error route
 app.use(require('./routes/error'))
