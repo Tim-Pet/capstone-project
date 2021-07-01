@@ -33,7 +33,7 @@ function Header({
           <ArrowBackIosIcon /> back
         </StrippedButton>
       )}
-      <StyledTitle>{children}</StyledTitle>
+      <StyledTitle withMarginTop={withBack}>{children}</StyledTitle>
       {withSwitch && (
         <SwitchContainer>
           <SwitchLeft
@@ -74,7 +74,7 @@ const Container = styled.header`
 `
 const StrippedButton = styled(Button)`
   align-items: center;
-  background-color: transparent !important;
+  background: transparent !important;
   border-radius: 0;
   border: none;
   color: var(--color-text);
@@ -84,12 +84,13 @@ const StrippedButton = styled(Button)`
   padding: 0;
   position: absolute;
   top: 0;
+  box-shadow: none;
 `
 
-const StyledTitle = styled.h2`
+const StyledTitle = styled.h2<{ withMarginTop: boolean }>`
   justify-self: center;
   margin-bottom: 16px;
-  margin-top: 32px;
+  margin-top: ${({ withMarginTop }) => (withMarginTop ? '40px' : '16px')};
   position: relative;
   width: fit-content;
 `
@@ -100,13 +101,16 @@ const SwitchContainer = styled.div`
   border-radius: 24px;
   overflow: hidden;
   margin-bottom: 10px;
+  box-shadow: 5px 5px 12px #ebebeb, -5px -5px 12px #ffffffda;
 `
 const SwitchLeft = styled(Button)`
   background: ${({ isActive }) =>
-    isActive ? 'var(--color-accent)' : 'lightgrey'};
+    isActive
+      ? 'linear-gradient(145deg, #0084ff, #0070e1)'
+      : 'linear-gradient(145deg, #ebebeb, #d4d4d4)'};
   color: ${({ isActive }) => (isActive ? 'white' : 'var(--color-text)')};
   box-shadow: ${({ isActive }) =>
-    isActive ? 'inset -5px 0px 49px -16px rgba(58, 58, 58, 0.25)' : ''};
+    isActive ? 'inset -5px 0px 49px -16px rgba(58, 58, 58, 0.125)' : 'none'};
   padding: 10px 0;
   margin: 0;
   width: 50%;
@@ -115,10 +119,12 @@ const SwitchLeft = styled(Button)`
 `
 const SwitchRight = styled(Button)`
   background: ${({ isActive }) =>
-    isActive ? 'var(--color-accent)' : 'lightgrey'};
+    isActive
+      ? 'linear-gradient(145deg, #0070e1, #0084ff)'
+      : 'linear-gradient(145deg, #ebebeb, #d4d4d4)'};
   color: ${({ isActive }) => (isActive ? 'white' : 'var(--color-text)')};
   box-shadow: ${({ isActive }) =>
-    isActive ? 'inset 5px 0px 49px -16px rgba(58, 58, 58, 0.25)' : ''};
+    isActive ? 'inset 5px 0px 49px -16px rgba(58, 58, 58, 0.125)' : 'none'};
   padding: 10px 0;
   margin: 0;
   width: 50%;
