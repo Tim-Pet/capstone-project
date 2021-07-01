@@ -1,7 +1,8 @@
 import Div100vh from 'react-div-100vh'
 import styled from 'styled-components/macro'
-import heroImg from '../assets/images/Login-hero.jpg'
-import Button from './common/Button/Button'
+import heroImg from '../../assets/images/Login-hero.jpg'
+import Button from '../common/Button/Button'
+import logo from '../../assets/images/logo_transparent_cutted.png'
 
 function Login(): JSX.Element {
   const authEndpoint = 'https://accounts.spotify.com/authorize'
@@ -13,7 +14,7 @@ function Login(): JSX.Element {
     <LoginContainer>
       <StyledImg src={heroImg} />
       <ContentContainer>
-        <Title>Recofy</Title>
+        <TitleLogo src={logo} />
         <Description>
           Login with Spotify to get access to your personal recommendations
         </Description>
@@ -61,8 +62,10 @@ const ContentContainer = styled.div`
   position: absolute;
   width: 100%;
 `
-const Title = styled.h1`
-  margin-top: 32px;
+const TitleLogo = styled.img`
+  margin-top: 16px;
+  width: 200px;
+  object-fit: cover;
 `
 
 const Description = styled.p`

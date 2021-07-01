@@ -8,6 +8,7 @@ interface ButtonProps {
   as?: React.ElementType
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   disabled?: boolean
+  isActive?: boolean
 }
 
 const Button = ({

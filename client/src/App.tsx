@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
-import Login from './components/Login'
+import Login from './components/Login/Login'
+import { createUser, getUser } from './helper/backendRequests'
 import { getTokenFromUrl } from './helper/spotify'
 import CreatePlaylistPage from './pages/CreatePlaylistPage'
 import RecommendationPage from './pages/RecommendationPage'
@@ -9,7 +10,7 @@ import SelectPage from './pages/SelectPage'
 
 function App(): JSX.Element {
   const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
-  const [userId, setUserId] = useState<string>('')
+  const [user, setUser] = useState(null)
 
   const token: string | undefined = useMemo(getTokenFromUrl, [])
 
@@ -32,12 +33,13 @@ function App(): JSX.Element {
             <SelectPage spotify={spotify} setTracks={setTracks} />
           </Route>
           <Route path="/recommendations">
-            <RecommendationPage tracks={tracks} />
+            <RecommendationPage tracks={tracks} user={user} />
           </Route>
           <Route path="/create">
             <CreatePlaylistPage
               spotify={spotify}
-              userId={userId}
+              user={user}
+              setUser={setUser}
               tracks={tracks}
             />
           </Route>
@@ -57,9 +59,14 @@ function App(): JSX.Element {
   }
 
   function fetchUserId(): void {
-    spotify.getMe().then(({ id }) => {
-      const data: string = id
-      setUserId(data)
+    spotify.getMe().then(({ id, display_name }) => {
+      getUser(id).then(({ data }) => {
+        if (data) {
+          setUser(data)
+        } else {
+          createUser(id, display_name!).then(({ data }) => setUser(data))
+        }
+      })
     })
   }
 }
