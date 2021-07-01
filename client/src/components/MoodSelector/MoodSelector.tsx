@@ -147,7 +147,7 @@ const Wrapper = styled(Div100vh)`
 const PopUpContainer = styled.div`
   align-items: center;
   background: var(--color-background);
-  border-radius: 36px;
+  border-radius: 28px;
   box-shadow: -2px 2px 16px var(--color-text-light);
   display: flex;
   flex-direction: column;
@@ -175,7 +175,7 @@ const IconWrapper = styled.div`
 
 const ListContainer = styled.ul`
   -webkit-overflow-scrolling: touch;
-  border-radius: 24px;
+  border-radius: 18px;
   border: 1px solid var(--color-text-light);
   height: 150px;
   line-height: 2.5rem;
@@ -187,6 +187,8 @@ const ListContainer = styled.ul`
   scrollbar-width: none;
   text-align: center;
   width: 300px;
+  box-shadow: inset 0px 11px 20px -10px #c9c9c9,
+    inset 0px -11px 20px -10px #c9c9c9;
   ::-webkit-scrollbar {
     display: none;
   }

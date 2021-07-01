@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
 :root {
   --color-accent-light: #007bf580;
   --color-accent: #007BF5;
+  --color-accent-btn: linear-gradient(45deg, #0084ff, #0070e1);
   --color-background-alt: #FFFFFF70;
   --color-background: linear-gradient(to right top, #ffffff, #fbfbfb, #f7f7f7, #f3f3f3, #efefef);
   --color-text-light: #50525470;
@@ -39,7 +40,7 @@ h1 {
 
 h2 {
   font-size: 2rem;
-  line-height: 3rem;
+  line-height: 2rem;
 }
 
 h3 {

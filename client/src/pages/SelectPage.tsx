@@ -31,6 +31,7 @@ const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
 
   useEffect(() => {
     adjustSeedObject()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentMood])
 
   const history = useHistory()
