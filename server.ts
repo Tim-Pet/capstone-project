@@ -1,7 +1,7 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const path = require('path')
-const bodyParser = require('body-parser')
+import express = require('express')
+import mongoose = require('mongoose')
+import path = require('path')
+import bodyParser = require('body-parser')
 
 require('dotenv').config()
 
