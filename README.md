@@ -9,7 +9,8 @@
 
 # Capstone project: Recofy
 
-👋🏽 &nbsp;Welcome to Spotify Recommendations alias Recofy.
+**Welcome to Spotify Recommendations alias Recofy.**
+
 Let Recofy join your daily routine. Select your mood and get your personal Song recommendations, save them to your Spotify Account or access your recommendation history and groove on.
 
 Its a perfect match if you are:
