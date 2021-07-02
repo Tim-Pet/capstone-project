@@ -4,13 +4,14 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import Login from './components/Login/Login'
 import { createUser, getUser } from './helper/backendRequests'
 import { getTokenFromUrl } from './helper/spotify'
+import { User } from './interfaces/SpotifyExtensions'
 import CreatePlaylistPage from './pages/CreatePlaylistPage'
 import RecommendationPage from './pages/RecommendationPage'
 import SelectPage from './pages/SelectPage'
 
 function App(): JSX.Element {
   const [tracks, setTracks] = useState<SpotifyApi.TrackObjectSimplified[]>()
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
 
   const token: string | undefined = useMemo(getTokenFromUrl, [])
 
@@ -33,12 +34,12 @@ function App(): JSX.Element {
             <SelectPage spotify={spotify} setTracks={setTracks} />
           </Route>
           <Route path="/recommendations">
-            <RecommendationPage tracks={tracks} user={user} />
+            <RecommendationPage tracks={tracks} user={user!} />
           </Route>
           <Route path="/create">
             <CreatePlaylistPage
               spotify={spotify}
-              user={user}
+              user={user!}
               setUser={setUser}
               tracks={tracks}
             />

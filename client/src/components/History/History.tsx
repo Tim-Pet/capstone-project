@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
+import { User } from '../../interfaces/SpotifyExtensions'
 
 interface HistoryProps {
-  user: any
+  user: User
 }
 
 const History = ({ user }: HistoryProps) => {
   const [playlists, setPlaylists] = useState<any[] | null>(null)
   useEffect(() => {
     setPlaylists(user.playlists)
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <Container>
       {playlists?.map(playlist => (
-        <Wrapper>
-          <PlaylistName key={playlist._id}>{playlist.title}</PlaylistName>
+        <Wrapper key={playlist._id}>
+          <PlaylistName>{playlist.title}</PlaylistName>
         </Wrapper>
       ))}
     </Container>

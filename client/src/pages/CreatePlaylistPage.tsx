@@ -5,12 +5,13 @@ import styled from 'styled-components/macro'
 import PlaylistForm from '../components/PlaylistForm/PlaylistForm'
 import Header from '../components/Header/Header'
 import { getUser, patchUser } from '../helper/backendRequests'
+import { User } from '../interfaces/SpotifyExtensions'
 
 interface CreatePlaylistPageProps {
   spotify: SpotifyWebApi.SpotifyWebApiJs
-  user: any
+  user: User
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
-  setUser: React.Dispatch<React.SetStateAction<null>>
+  setUser: React.Dispatch<React.SetStateAction<User | null>>
 }
 
 const CreatePlaylistPage = ({
