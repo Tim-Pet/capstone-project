@@ -4,9 +4,6 @@
 </div>
 
 ---
-
-<br>
-
 # Capstone project: Recofy
 
 **Welcome to Spotify Recommendations alias Recofy.**
@@ -20,8 +17,6 @@ Its a perfect match if you are:
 - ...the 'show me your Spotify account and I tell you who you are'-type
 
 ---
-
-<br>
 
 ## Goal for MVP
 
