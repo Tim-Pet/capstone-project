@@ -6,9 +6,10 @@ import Button from '../components/common/Button/Button'
 import Header from '../components/Header/Header'
 import SongList from '../components/SongList/SongList'
 import History from '../components/History/History'
+import { User } from '../interfaces/SpotifyExtensions'
 interface RecommendationPageProps {
   tracks: SpotifyApi.TrackObjectSimplified[] | undefined
-  user: any
+  user: User
 }
 function RecommendationPage({
   tracks,
