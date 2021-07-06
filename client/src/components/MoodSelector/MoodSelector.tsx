@@ -36,8 +36,8 @@ function MoodSelector({
       const moodItems = [...moodListRef.current.children] as Array<HTMLElement>
       const moodItemCenter = moodItems[0].offsetHeight / 2
       const boxCenter = moodListRef.current.offsetHeight / 2
-      const bottomLine = boxCenter + 20 // 15px below center
-      const topLine = boxCenter - 20 // 25px above center --> 40px(2.5rem) in total to set an 'active area' for an entry
+      const bottomLine = boxCenter + 20 // 20px below center
+      const topLine = boxCenter - 20 // 20px above center --> 40px(2.5rem) in total to set an 'active area' for an entry
 
       variables.current = {
         moodList: moodListRef.current,
@@ -52,14 +52,14 @@ function MoodSelector({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  let activeMood: Mood | undefined
+  let activeMood: Mood | undefined // Not a state due to performance improvements (reduce unnecessary renders)
 
   return (
     <Wrapper>
       <PopUpContainer>
         <Head>
           <Title>Your Mood</Title>
-          <IconWrapper onClick={handleClose}>
+          <IconWrapper onClick={closePopUp}>
             <CloseIcon fontSize="inherit" color="inherit" />
           </IconWrapper>
         </Head>
@@ -112,6 +112,7 @@ function MoodSelector({
   }
 
   function setActiveMood(moodItem: HTMLElement) {
+    // State like naming on purpose since it has the same functionality
     const moodItemContent = moodItem.children[0] as HTMLElement //Selects the content of the li and scales it to prevent layout shifts
     moodItemContent.style.color = 'var(--color-accent)'
     moodItemContent.style.transform = 'scale(1.2)'
@@ -125,7 +126,7 @@ function MoodSelector({
     setShowMoodSelector(false)
   }
 
-  function handleClose() {
+  function closePopUp() {
     setShowMoodSelector(false)
   }
 }

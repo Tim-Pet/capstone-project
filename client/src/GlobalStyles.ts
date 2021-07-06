@@ -18,10 +18,9 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   color: var(--color-text);
-  font-family: 'Montserrat';
+  font-family: Montserrat, sans-serif;
   font-weight: 400;
   margin: 0;
-  padding: 0;
 }
 p, a {
   font-size: 1.25rem;

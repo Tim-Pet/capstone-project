@@ -57,6 +57,7 @@ const SelectPage = ({ spotify, setTracks }: SelectPageProps): JSX.Element => {
     const { options } = currentMood
     setSeedObject({ ...baseSeedObject, ...options })
   }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
     spotify.getRecommendations(
