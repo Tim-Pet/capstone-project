@@ -1,12 +1,12 @@
-import express, { NextFunction } from 'express'
+import e, { NextFunction } from 'express'
 
 interface ResponseError extends Error {
   status?: number
 }
 module.exports = (
   err: ResponseError,
-  req: express.Request,
-  res: express.Response,
+  req: e.Request,
+  res: e.Response,
   next: NextFunction
 ) => {
   res.status(err.status ?? 500)

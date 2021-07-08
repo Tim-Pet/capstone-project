@@ -1,4 +1,3 @@
-export {} //needed due to module.exports to fix TS2451
 import express from 'express'
 const router = express.Router()
 const User = require('../models/User')
